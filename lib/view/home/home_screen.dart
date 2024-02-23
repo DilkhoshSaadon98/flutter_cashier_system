@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBarTitle('Home'),
-      body: Image.asset("images/customer-support.png"),
+      body: Image.asset("assets/icons/customer-support.png"),
     );
   }
 }
