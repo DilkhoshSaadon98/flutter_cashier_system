@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 MyServices myServices = Get.find();
 TextStyle get titleStyle {
   return myServices.sharedPreferences.getString('lang') == 'en'
-      ? GoogleFonts.barlowCondensed(
+      ? GoogleFonts.kanit(
           textStyle: TextStyle(
           fontSize: 16.sp,
           fontWeight: FontWeight.w700,
-          color:  primaryColor,
+          color: primaryColor,
         ))
       : myServices.sharedPreferences.getString('lang') == 'ar'
           ? GoogleFonts.cairo(
@@ -52,8 +52,6 @@ TextStyle get bodyStyle {
             ));
 }
 
-
-
 double constScreenPadding = 15.w;
 double constRadius = 8.r;
-String constAppVersion = "1.1.2";  
+String constAppVersion = "1.1.2";

@@ -1,4 +1,3 @@
-
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/constant/routes.dart';
@@ -11,7 +10,7 @@ AppBar customAppBarTitle(
   bool? showBadge = false,
 ]) {
   return AppBar(
-    
+    backgroundColor: primaryColor,
     leading: isSubScreen == true
         ? GestureDetector(
             onLongPress: () {
@@ -21,7 +20,7 @@ AppBar customAppBarTitle(
                 onPressed: () {
                   Get.back();
                 },
-                icon:  const Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                   color: secondColor,
                 )),
