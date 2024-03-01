@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,13 +13,15 @@ class Right_Side extends StatelessWidget {
       height: double.infinity,
       width: 0.3.sw,
       decoration: BoxDecoration(
+        color: white,
         border: Border.all(width: 1.w),
       ),
       child: Column(
         children: [
           Container(
-            height: 50.h,
+            height: 100.h,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
                   height: 50.h,
@@ -33,6 +38,37 @@ class Right_Side extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          //buttons
+          Container(
+            height: 0.6.sh,
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  childAspectRatio: 6,
+                  mainAxisSpacing: 4.w,
+                ),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
+                    alignment: Alignment.center,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1.w),
+                      color: fourthColor,
+                      borderRadius: BorderRadius.circular(5.w),
+                    ),
+                    child: Text(
+                      "data${index}",
+                      style: TextStyle(
+                        color: white,
+                        fontSize: 18.sp,
+                      ),
+                    ),
+                  );
+                }),
           )
         ],
       ),
