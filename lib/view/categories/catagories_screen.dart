@@ -1,5 +1,4 @@
 import 'package:cashier_system/controller/catagories/catagories_controller.dart';
-import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/functions/validinput.dart';
 import 'package:cashier_system/core/shared/custom_appbar_title.dart';
