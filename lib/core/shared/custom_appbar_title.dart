@@ -27,7 +27,7 @@ AppBar customAppBarTitle(
           )
         : Container(),
     centerTitle: true,
-    elevation: 10,
+    elevation: 0,
     scrolledUnderElevation: 1,
     title: Text(
       title,

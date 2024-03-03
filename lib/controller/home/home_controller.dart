@@ -26,7 +26,9 @@ class HomeController extends GetxController {
     () {},
     () {},
     () {},
-    () {},
+    () {
+      Get.toNamed(AppRoute.catagoriesScreen);
+    },
     () {},
   ];
 }

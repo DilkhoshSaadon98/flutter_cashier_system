@@ -2,6 +2,7 @@ import 'package:cashier_system/controller/home/home_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
 import 'package:get/get.dart';
@@ -12,13 +13,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    final double screenWidth = Get.width;
 
     return Scaffold(
       body: Container(
         width: Get.width,
         color: primaryColor,
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding:  EdgeInsets.symmetric(vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,11 +38,11 @@ class HomeScreen extends StatelessWidget {
       children: [
         Text(
           'MR.ROBOT ',
-          style: titleStyle.copyWith(fontSize: 60, color: white),
+          style: titleStyle.copyWith(fontSize: 60.sp, color: white),
         ),
         Text(
           'COM.',
-          style: titleStyle.copyWith(fontSize: 60, color: secondColor),
+          style: titleStyle.copyWith(fontSize: 60.sp, color: secondColor),
         ),
       ],
     );
@@ -50,9 +50,9 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildGridView() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.symmetric(vertical: 15.h),
       width: Get.width / 2, // Adjust the width if necessary
-      height: 300,
+      height: 300.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: secondColor.withOpacity(.4),
@@ -61,9 +61,9 @@ class HomeScreen extends StatelessWidget {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: _calculateCrossAxisCount(Get.width),
-            childAspectRatio: 1.9,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 10,
+            childAspectRatio: 1.9.h,
+            crossAxisSpacing: 20.w,
+            mainAxisSpacing: 10.h,
           ),
           itemCount: controller.homeTitles.length,
           itemBuilder: (context, index) {
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                     controller.homeIcons[index],
                     semanticsLabel: 'Acme Logo',
                     color: primaryColor,
-                    width: 50,
+                    width: 50.w,
                   ),
                   customSizedBox(),
                   Text(
