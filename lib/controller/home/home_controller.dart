@@ -29,6 +29,8 @@ class HomeController extends GetxController {
     () {
       Get.toNamed(AppRoute.catagoriesScreen);
     },
-    () {},
+    () {
+      Get.toNamed(AppRoute.changeUsernamePassword);
+    },
   ];
 }
