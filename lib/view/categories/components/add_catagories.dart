@@ -25,12 +25,16 @@ class AddCatagories extends StatelessWidget {
           children: [
             Text(
               'Catagories Name',
-              style: titleStyle.copyWith(fontSize: 20.sp, color: thirdColor),
+              style: titleStyle.copyWith(
+                fontSize: 20.sp,
+              ),
             ),
+            customSizedBox(10),
             CustomTextFormFieldItems(
                 hinttext: 'Catagories Name',
                 labeltext: "Catagories Name",
                 iconData: Icons.layers,
+                borderColor: primaryColor,
                 valid: (value) {
                   return validInput(value!, 0, 500, "");
                 },
@@ -38,7 +42,9 @@ class AddCatagories extends StatelessWidget {
             customSizedBox(30),
             Text(
               'Catagories Image',
-              style: titleStyle.copyWith(fontSize: 20.sp, color: thirdColor),
+              style: titleStyle.copyWith(
+                fontSize: 20.sp,
+              ),
             ),
             FlutterLogo(
               size: 250.spMax,

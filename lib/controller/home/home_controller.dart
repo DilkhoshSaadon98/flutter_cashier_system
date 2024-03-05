@@ -8,6 +8,7 @@ class HomeController extends GetxController {
     "Imp/Exp",
     "Inventory",
     "Buying",
+    "Catagories",
     "Items",
     "Settings",
   ];
@@ -17,6 +18,7 @@ class HomeController extends GetxController {
     AppImageAsset.inventoryIcons,
     AppImageAsset.buyingIcons,
     AppImageAsset.itemsIcons,
+    AppImageAsset.itemsIcons,
     AppImageAsset.settingIcons,
   ];
   List<void Function()> homeTab = [
@@ -24,10 +26,15 @@ class HomeController extends GetxController {
       Get.toNamed(AppRoute.cashierScreen);
     },
     () {},
-    () {},
+    () {
+      Get.toNamed(AppRoute.inventoryScreen);
+    },
     () {},
     () {
       Get.toNamed(AppRoute.catagoriesScreen);
+    },
+    () {
+      Get.toNamed(AppRoute.itemsScreen);
     },
     () {
       Get.toNamed(AppRoute.changeUsernamePassword);

@@ -1,25 +1,26 @@
-import 'package:cashier_system/controller/catagories/catagories_controller.dart';
-import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/controller/items/items_controller.dart';
 import 'package:cashier_system/core/functions/validinput.dart';
 import 'package:cashier_system/core/shared/custom_appbar_title.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
-import 'package:cashier_system/view/categories/components/add_catagories.dart';
 import 'package:cashier_system/view/categories/components/custom_buttton_items.dart';
-import 'package:cashier_system/view/categories/components/custom_show_catagories.dart';
 import 'package:cashier_system/view/categories/components/custom_text_field.dart';
+import 'package:cashier_system/view/items/components/custom_add_items.dart';
+import 'package:cashier_system/view/items/components/custom_show_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CatagoriesScreen extends StatelessWidget {
-  const CatagoriesScreen({super.key});
+import '../../core/constant/color.dart';
+
+class ItemsScreen extends StatelessWidget {
+  const ItemsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CatagoriesController());
+    Get.lazyPut((() => ItemsController()));
     return Scaffold(
       backgroundColor: primaryColor,
-      body: GetBuilder<CatagoriesController>(builder: (controller) {
+      body: GetBuilder<ItemsController>(builder: (controller) {
         return Row(
           children: [
             Expanded(
@@ -32,15 +33,15 @@ class CatagoriesScreen extends StatelessWidget {
                         //! View Catagories:
                         ListView(
                           children: [
-                            customAppBarTitle('View Categories'),
-                            const CustomShowCatagories(),
+                            customAppBarTitle('View Items'),
+                            const CustomShowItems()
                           ],
                         ),
                         //! Add Catagories:
                         ListView(
                           children: [
-                            customAppBarTitle('Add Categories'),
-                            const AddCatagories()
+                            customAppBarTitle('Add Items'),
+                            const AddItems()
                           ],
                         )
                       ],
@@ -75,7 +76,7 @@ class CatagoriesScreen extends StatelessWidget {
                         () {
                           controller.changeIndex(0);
                         },
-                        "View Categories",
+                        "View Items",
                         Icons.visibility,
                         Colors.greenAccent,
                         black,
@@ -84,7 +85,7 @@ class CatagoriesScreen extends StatelessWidget {
                         () {
                           controller.changeIndex(1);
                         },
-                        "Add Categories",
+                        "Add Items",
                         Icons.add_box_outlined,
                       ),
                       customSizedBox(),

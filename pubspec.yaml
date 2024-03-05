@@ -22,6 +22,8 @@ dependencies:
   #image / icons / svg:
   flutter_svg: ^2.0.10+1
   lottie: ^3.0.0
+  # Widgets:
+  drop_down_list: ^0.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

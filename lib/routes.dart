@@ -6,6 +6,8 @@ import 'package:cashier_system/view/Settings/change_userName_password.dart';
 import 'package:cashier_system/view/cashier/cashier_screen.dart';
 import 'package:cashier_system/view/categories/catagories_screen.dart';
 import 'package:cashier_system/view/home/home_screen.dart';
+import 'package:cashier_system/view/inventory/inventory_screen.dart';
+import 'package:cashier_system/view/items/items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +21,7 @@ List<GetPage<dynamic>>? routes = [
       page: () => HomeScreen(),
       middlewares: [MyMiddleWare()]),
 
-  //!  Auth Roots :
+  //!  Home Roots :
   GetPage(
       transition: Transition.leftToRight,
       curve: Curves.decelerate,
@@ -38,6 +40,19 @@ List<GetPage<dynamic>>? routes = [
       transitionDuration: const Duration(milliseconds: 500),
       name: AppRoute.catagoriesScreen,
       page: () => const CatagoriesScreen()),
+  GetPage(
+      transition: Transition.leftToRight,
+      curve: Curves.decelerate,
+      transitionDuration: const Duration(milliseconds: 500),
+      name: AppRoute.inventoryScreen,
+      page: () => const InventoryScreen()),
+  GetPage(
+      transition: Transition.leftToRight,
+      curve: Curves.decelerate,
+      transitionDuration: const Duration(milliseconds: 500),
+      name: AppRoute.itemsScreen,
+      page: () => const ItemsScreen()),
+  //! Settings Routes
   GetPage(
       transition: Transition.leftToRight,
       curve: Curves.decelerate,

@@ -11,6 +11,7 @@ class CustomShowCatagories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: white,
       height: Get.height,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: GridView.builder(

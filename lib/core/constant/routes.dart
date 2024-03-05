@@ -1,8 +1,11 @@
 class AppRoute {
-  // Home
+  //! Home Routes:
   static const String homeScreen = "/homeScreen";
   static const String cashierScreen = "/cashierScreen";
   static const String catagoriesScreen = "/catagoriesScreen";
+  static const String itemsScreen = "/itemsScreen";
+  static const String inventoryScreen = "/inventoryScreen";
+  //! Settings Routes:
   static const String updateScreen = "/updateScreen";
   static const String backUpScreen = "/backUpScreen";
   static const String changeUsernamePassword = "/changeUsernamePassword";

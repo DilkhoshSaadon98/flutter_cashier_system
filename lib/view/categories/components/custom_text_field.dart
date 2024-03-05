@@ -8,6 +8,7 @@ class CustomTextFormFieldItems extends StatelessWidget {
   final String hinttext;
   final String labeltext;
   final IconData iconData;
+  Color? borderColor;
   TextEditingController? mycontroller;
   final String? Function(String?) valid;
   final bool isNumber;
@@ -29,7 +30,8 @@ class CustomTextFormFieldItems extends StatelessWidget {
       required this.isNumber,
       this.readOnly,
       this.capitalizeText,
-      this.onChanged})
+      this.onChanged,
+      this.borderColor})
       : super(key: key);
 
   @override
@@ -44,23 +46,28 @@ class CustomTextFormFieldItems extends StatelessWidget {
       keyboardType: isNumber == true ? TextInputType.phone : TextInputType.text,
       controller: mycontroller,
       style: titleStyle.copyWith(
-          fontWeight: FontWeight.w700, fontSize: 13, color: thirdColor),
+          fontWeight: FontWeight.w700,
+          fontSize: 13,
+          color: borderColor ?? thirdColor),
       textAlign: TextAlign.start,
       readOnly: readOnly ?? false,
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hinttext.tr,
-        hintStyle: bodyStyle.copyWith(fontSize: 12, color: white),
+        hintStyle:
+            bodyStyle.copyWith(fontSize: 12, color: borderColor ?? thirdColor),
         alignLabelWithHint: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
         label: Text(
           labeltext.tr,
           style: titleStyle.copyWith(
-              fontWeight: FontWeight.w400, fontSize: 13, color: thirdColor),
+              fontWeight: FontWeight.w400,
+              fontSize: 13,
+              color: borderColor ?? thirdColor),
         ),
         prefixIcon: Icon(
           iconData,
-          color: thirdColor,
+          color: borderColor ?? thirdColor,
         ),
         focusedErrorBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: secondColor, width: 2),
@@ -72,7 +79,7 @@ class CustomTextFormFieldItems extends StatelessWidget {
             borderSide: BorderSide(color: Colors.greenAccent, width: 2),
             borderRadius: BorderRadius.all(Radius.circular(5))),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: thirdColor, width: 2),
+            borderSide: BorderSide(color: borderColor ?? thirdColor, width: 2),
             borderRadius: BorderRadius.all(Radius.circular(constRadius))),
       ),
     );
