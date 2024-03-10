@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         width: Get.width,
         color: primaryColor,
-        padding:  EdgeInsets.symmetric(vertical: 20.h),
+        padding: EdgeInsets.symmetric(vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                   SvgPicture.asset(
                     controller.homeIcons[index],
                     semanticsLabel: 'Acme Logo',
-                    color: primaryColor,
+                    color: white,
                     width: 50.w,
                   ),
                   customSizedBox(),

@@ -25,7 +25,9 @@ class HomeController extends GetxController {
     () {
       Get.toNamed(AppRoute.cashierScreen);
     },
-    () {},
+    () {
+      Get.toNamed(AppRoute.importExportScreen);
+    },
     () {
       Get.toNamed(AppRoute.inventoryScreen);
     },

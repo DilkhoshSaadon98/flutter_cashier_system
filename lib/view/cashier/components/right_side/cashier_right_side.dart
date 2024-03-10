@@ -1,21 +1,22 @@
+import 'package:cashier_system/controller/cashier/cashier_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/constant/imgaeasset.dart';
+import 'package:cashier_system/core/responsive/responisve_text_body.dart';
+import 'package:cashier_system/core/responsive/responsive_icons.dart';
+import 'package:cashier_system/core/shared/custom_header_screen.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:intl/intl.dart';
 
 class CashierRightSideScreen extends StatelessWidget {
   const CashierRightSideScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final now = DateTime.now();
-    final formattedDateTime = DateFormat('EEE, d, yyyy HH:mm:ss').format(now);
-
+    Get.put(CashierController());
     return Expanded(
       flex: 2,
       child: Container(
@@ -23,27 +24,10 @@ class CashierRightSideScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    formattedDateTime.toString(),
-                    style: titleStyle.copyWith(color: white),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.home,
-                      color: secondColor,
-                      size: 50,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CustomHeaderScreen(
+                title: 'Cashier',
+                imagePath: AppImageAsset.cashierIcons,
+                root: () {}),
             customSizedBox(),
             Expanded(
               child: Container(
@@ -53,16 +37,20 @@ class CashierRightSideScreen extends StatelessWidget {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       'Total',
-                      style: titleStyle.copyWith(color: white, fontSize: 20),
+                      style: titleStyle.copyWith(
+                          color: white,
+                          fontSize: responsivefontSize(Get.width)),
                     ),
                     Text(
                       '10.000 IQD',
-                      style: titleStyle.copyWith(color: white, fontSize: 20),
+                      style: titleStyle.copyWith(
+                          color: white,
+                          fontSize: responsivefontSize(Get.width)),
                     ),
                   ],
                 ),
@@ -85,11 +73,13 @@ class CashierRightSideScreen extends StatelessWidget {
                       AppImageAsset.cashierIcons,
                       // ignore: deprecated_member_use
                       color: white,
-                      width: 35,
+                      width: responsiveIconSize(Get.width),
                     ),
                     Text(
                       'PAY',
-                      style: titleStyle.copyWith(color: white),
+                      style: titleStyle.copyWith(
+                          color: white,
+                          fontSize: responsivefontSize(Get.width)),
                     ),
                   ],
                 ),
@@ -98,35 +88,62 @@ class CashierRightSideScreen extends StatelessWidget {
             customSizedBox(),
             Expanded(
               flex: 5,
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 3,
-                      crossAxisSpacing: 10),
-                  itemCount: 12,
+              child: GetBuilder<CashierController>(builder: (controller) {
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: Get.width > 600 ? 2 : 1,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: Get.width > 600 ? 4.h : 3.h,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemCount: controller.buttonMap.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: thirdColor,
-                          border: Border.all(color: secondColor, width: .5),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'data$index',
-                            style: bodyStyle.copyWith(color: white),
+                    bool isHovered = controller.hoverStates[index];
+
+                    return MouseRegion(
+                      onEnter: (_) {
+                        controller.setHoverState(index, true);
+                      },
+                      onExit: (_) {
+                        controller.setHoverState(index, false);
+                      },
+                      child: GestureDetector(
+                        onTap: controller.cashierFunctions[index],
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 100),
+                          height: 50.h,
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          decoration: BoxDecoration(
+                            color: !isHovered ? thirdColor : secondColor,
+                            border: Border.all(color: secondColor, width: .5),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          const Icon(
-                            Icons.holiday_village,
-                            color: white,
-                          )
-                        ],
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  controller.buttonMap.keys.elementAt(index),
+                                  style: bodyStyle.copyWith(
+                                    color: white,
+                                    fontSize: responsivefontSize(Get.width),
+                                  ),
+                                ),
+                              ),
+                              Icon(
+                                controller.buttonMap.values.elementAt(index),
+                                color: white,
+                                size: responsiveIconSize(Get.width),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     );
-                  }),
-            )
+                  },
+                );
+              }),
+            ),
           ],
         ),
       ),

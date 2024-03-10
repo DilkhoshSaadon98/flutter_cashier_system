@@ -3,6 +3,7 @@ import 'package:cashier_system/core/constant/color.dart';
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDownSearch extends StatelessWidget {
   final String? title;
@@ -37,10 +38,12 @@ class CustomDropDownSearch extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20,
           ),
-          label: Text(
-            title!,
-            style: titleStyle.copyWith(
-                color: white, fontWeight: FontWeight.w100, fontSize: 15),
+          label: Flexible(
+            child: Text(
+              title!,
+              style: titleStyle.copyWith(
+                  color: white, fontWeight: FontWeight.w100, fontSize: 10.sp),
+            ),
           ),
           // hintText: contrllerName.text == "" ? title : contrllerName.text,
           hintText: "From",

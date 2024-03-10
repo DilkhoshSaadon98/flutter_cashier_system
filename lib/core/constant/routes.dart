@@ -5,6 +5,7 @@ class AppRoute {
   static const String catagoriesScreen = "/catagoriesScreen";
   static const String itemsScreen = "/itemsScreen";
   static const String inventoryScreen = "/inventoryScreen";
+  static const String importExportScreen = "/importExportScreen";
   //! Settings Routes:
   static const String updateScreen = "/updateScreen";
   static const String backUpScreen = "/backUpScreen";
