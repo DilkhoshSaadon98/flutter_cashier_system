@@ -1,12 +1,14 @@
 import 'package:cashier_system/controller/catagories/catagories_controller.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/core/constant/imgaeasset.dart';
 import 'package:cashier_system/core/functions/validinput.dart';
 import 'package:cashier_system/core/shared/custom_appbar_title.dart';
+import 'package:cashier_system/core/shared/custom_header_screen.dart';
+import 'package:cashier_system/core/shared/custom_search_widget.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
 import 'package:cashier_system/view/categories/components/add_catagories.dart';
 import 'package:cashier_system/view/categories/components/custom_buttton_items.dart';
 import 'package:cashier_system/view/categories/components/custom_show_catagories.dart';
-import 'package:cashier_system/view/categories/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -53,22 +55,10 @@ class CatagoriesScreen extends StatelessWidget {
                   color: primaryColor,
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          CircleAvatar(
-                              radius: 30,
-                              backgroundColor: secondColor,
-                              child: IconButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  icon: Icon(
-                                    Icons.home,
-                                    color: primaryColor,
-                                    size: 35,
-                                  ))),
-                        ],
+                      CustomHeaderScreen(
+                        imagePath: AppImageAsset.itemsIcons,
+                        root: () {},
+                        title: 'Catagories',
                       ),
                       customSizedBox(25),
                       customButtonItems(
@@ -88,7 +78,7 @@ class CatagoriesScreen extends StatelessWidget {
                         Icons.add_box_outlined,
                       ),
                       customSizedBox(),
-                      CustomTextFormFieldItems(
+                      CustomSearchField(
                         borderColor: white,
                         hinttext: "Search in Catagories . . .",
                         iconData: Icons.search,

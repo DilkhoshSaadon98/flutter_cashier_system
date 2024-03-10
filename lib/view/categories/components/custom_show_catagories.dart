@@ -31,18 +31,20 @@ class CustomShowCatagories extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                  color: primaryColor, borderRadius: BorderRadius.circular(10)),
+                  border: Border.all(color: primaryColor),
+                  color: white,
+                  borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.layers,
                     size: 50,
-                    color: secondColor,
+                    color: primaryColor,
                   ),
                   Text(
                     "data${index.toString()}",
-                    style: bodyStyle.copyWith(color: secondColor),
+                    style: bodyStyle.copyWith(),
                   )
                 ],
               ),

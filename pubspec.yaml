@@ -24,6 +24,7 @@ dependencies:
   lottie: ^3.0.0
   # Widgets:
   drop_down_list: ^0.0.5
+  floating_bubbles: ^2.6.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

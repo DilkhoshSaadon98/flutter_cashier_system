@@ -29,6 +29,15 @@ TextStyle get titleStyle {
             ));
 }
 
+TextStyle get introStyle {
+  return GoogleFonts.rubikMoonrocks(
+      textStyle: TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: primaryColor,
+  ));
+}
+
 TextStyle get bodyStyle {
   return myServices.sharedPreferences.getString('lang') == 'en'
       ? GoogleFonts.barlowCondensed(

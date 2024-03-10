@@ -91,9 +91,9 @@ class CashierRightSideScreen extends StatelessWidget {
               child: GetBuilder<CashierController>(builder: (controller) {
                 return GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: Get.width > 600 ? 2 : 1,
+                    crossAxisCount: Get.width > 800 ? 2 : 1,
                     mainAxisSpacing: 10,
-                    childAspectRatio: Get.width > 600 ? 4.h : 3.h,
+                    childAspectRatio: Get.width > 600 ? 4.h : 3.5.h,
                     crossAxisSpacing: 10,
                   ),
                   itemCount: controller.buttonMap.length,
