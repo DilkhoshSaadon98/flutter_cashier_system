@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-Widget customButtonItems(
+Widget customButtonGlobal(
     void Function()? onTap, String title, IconData iconData,
     [Color? color, Color? textColor]) {
   return GestureDetector(

@@ -1,8 +1,8 @@
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/core/constant/routes.dart';
 import 'package:cashier_system/core/responsive/responisve_text_body.dart';
 import 'package:cashier_system/core/responsive/responsive_icons.dart';
-import 'package:cashier_system/core/shared/custom_sized_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -65,7 +65,7 @@ class CustomHeaderScreen extends StatelessWidget {
             backgroundColor: secondColor,
             child: IconButton(
                 onPressed: () {
-                  Get.back();
+                  Get.offAllNamed(AppRoute.homeScreen);
                 },
                 icon: Icon(
                   Icons.home,

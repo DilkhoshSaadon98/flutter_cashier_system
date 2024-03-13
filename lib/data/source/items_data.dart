@@ -1,0 +1,41 @@
+import 'dart:io';
+
+import 'package:cashier_system/core/class/crud.dart';
+import 'package:cashier_system/linkapi.dart';
+
+class ItemsData {
+  Crud crud;
+  ItemsData(this.crud);
+  //! View Items :
+  getItemsData() async {
+    var response = await crud.postData(AppLink.viewItems, {});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //! Insert Items:
+  insertItemsData(Map data, File file) async {
+    var response =
+        await crud.addRequestWithOneImage(AppLink.insertItems, data, file);
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //! Update Items:
+  updateItemsData(Map data, [File? file]) async {
+    var response = await crud.postData(AppLink.updateItems, data);
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //! Delete Items:
+  deleteItemsData() async {
+    var response = await crud.postData(AppLink.deleteItems, {});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  //! Search Items:
+  searchItemsData(String search) async {
+    var response = await crud.postData(AppLink.searchItems, {
+      "search": search,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+}

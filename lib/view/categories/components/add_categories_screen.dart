@@ -7,14 +7,15 @@ import 'package:cashier_system/core/shared/custom_appbar_title.dart';
 import 'package:cashier_system/core/shared/custom_header_screen.dart';
 import 'package:cashier_system/core/shared/custom_search_widget.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
+import 'package:cashier_system/view/categories/components/add_catagories_widget.dart';
 import 'package:cashier_system/core/shared/custom_buttton_items.dart';
 import 'package:cashier_system/view/categories/components/view_categories_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CatagoriesScreen extends StatelessWidget {
-  const CatagoriesScreen({super.key});
+class AddCategoriesScreen extends StatelessWidget {
+  const AddCategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,16 @@ class CatagoriesScreen extends StatelessWidget {
       body: GetBuilder<CatagoriesController>(builder: (controller) {
         return Row(
           children: [
-            //! View Categories
             Expanded(
                 flex: 6,
-                child: ListView(
-                  children: [
-                    customAppBarTitle('View Categories'),
-                    const CustomShowCatagories(),
-                  ],
-                )),
+                child: Container(
+                    color: thirdColor,
+                    child: ListView(
+                      children: [
+                        customAppBarTitle('Add Categories'),
+                        AddCatagories()
+                      ],
+                    ))),
             Expanded(
                 flex: 2,
                 child: Container(
@@ -40,9 +42,7 @@ class CatagoriesScreen extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
                   color: primaryColor,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      //! Custom Header:
                       CustomHeaderScreen(
                         imagePath: AppImageAsset.itemsIcons,
                         root: () {},
@@ -64,22 +64,6 @@ class CatagoriesScreen extends StatelessWidget {
                         },
                         "Add Categories",
                         Icons.add_box_outlined,
-                      ),
-                      customSizedBox(),
-                      CustomSearchField(
-                        borderColor: white,
-                        hinttext: "Search in Catagories . . .",
-                        iconData: Icons.search,
-                        mycontroller: controller.search,
-                        onChanged: (val) {
-                          controller.onSearchItems();
-                          // controller.checkSearch(val);
-                        },
-                        isNumber: false,
-                        labeltext: "Search",
-                        valid: (value) {
-                          return validInput(value!, 3, 100, '');
-                        },
                       ),
                     ],
                   ),

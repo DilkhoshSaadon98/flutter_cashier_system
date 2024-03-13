@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class CustomTextFormFieldItems extends StatelessWidget {
+class CustomTextFormFieldGlobal extends StatelessWidget {
   final String hinttext;
   final String labeltext;
   final IconData iconData;
@@ -18,7 +18,7 @@ class CustomTextFormFieldItems extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function()? onTapIcon;
 
-  CustomTextFormFieldItems(
+  CustomTextFormFieldGlobal(
       {Key? key,
       this.obscureText,
       this.onTapIcon,

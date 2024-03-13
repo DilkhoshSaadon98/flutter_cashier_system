@@ -1,9 +1,9 @@
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/functions/validinput.dart';
+import 'package:cashier_system/core/shared/custom_formfield_global.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
-import 'package:cashier_system/view/categories/components/custom_buttton_items.dart';
-import 'package:cashier_system/view/categories/components/custom_text_field.dart';
+import 'package:cashier_system/core/shared/custom_buttton_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +28,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Items Name',
                 labeltext: "Items Name",
                 iconData: Icons.border_color_outlined,
@@ -45,7 +45,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Items Description',
                 labeltext: "Items Description",
                 iconData: Icons.description_outlined,
@@ -62,7 +62,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Selling Price',
                 labeltext: "Selling Price",
                 iconData: Icons.price_change_outlined,
@@ -79,7 +79,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Buying Price',
                 labeltext: "Buying Price",
                 iconData: Icons.price_change_outlined,
@@ -96,7 +96,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Wholesale Price',
                 labeltext: "Wholesale Price",
                 iconData: Icons.price_change_outlined,
@@ -113,10 +113,10 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Cost Price',
                 labeltext: "Cost Price",
-                iconData: Icons.price_change_outlined                              ,
+                iconData: Icons.price_change_outlined,
                 borderColor: primaryColor,
                 valid: (value) {
                   return validInput(value!, 0, 500, "");
@@ -130,7 +130,7 @@ class AddItems extends StatelessWidget {
               ),
             ),
             customSizedBox(10),
-            CustomTextFormFieldItems(
+            CustomTextFormFieldGlobal(
                 hinttext: 'Items Catagories',
                 labeltext: "Items Catagories",
                 iconData: Icons.layers,
@@ -150,7 +150,7 @@ class AddItems extends StatelessWidget {
               size: 250.spMax,
             ),
             const Spacer(),
-            customButtonItems(() {}, "Add", Icons.add, primaryColor, white)
+            customButtonGlobal(() {}, "Add", Icons.add, primaryColor, white)
           ],
         ));
   }

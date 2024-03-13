@@ -66,6 +66,7 @@ class _MultipleCurvedMovingBubblesState
     return Center(
       child: Stack(
         children: [
+ 
           buildAnimatedBubble(_animation1),
           buildAnimatedBubble(_animation2),
         ],

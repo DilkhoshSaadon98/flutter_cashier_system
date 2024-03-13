@@ -10,5 +10,7 @@ class AppRoute {
   static const String updateScreen = "/updateScreen";
   static const String backUpScreen = "/backUpScreen";
   static const String changeUsernamePassword = "/changeUsernamePassword";
-
+  //! Categories Routes:
+  static const String categoriesUpdateScreen = "/categoriesUpdateScreen";
+  static const String categoriesAddScreen = "/categoriesAddScreen";
   }
