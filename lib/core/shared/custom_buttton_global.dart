@@ -12,7 +12,7 @@ Widget customButtonGlobal(
     onTap: onTap,
     child: Container(
       width: Get.width,
-      height: 50.h,
+      height: 50,
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
           color: color ?? white,

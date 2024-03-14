@@ -16,8 +16,8 @@ class AppLink {
   static const String viewItems = "$server/items/items_view.php";
   static const String deleteItems = "$server/items/search.php";
   static const String updateItems = "$server/items/items_image.php";
-  static const String insertItems = "$server/items/items_image.php";
-  static const String searchItems = "$server/items/items_image.php";
+  static const String insertItems = "$server/items/items_add.php";
+  static const String searchItems = "$server/items/items_search.php";
   //! Categories
   static const String viewCategories = "$server/categories/categories_view.php";
   static const String insertCategories = "$server/categories/categories_add.php";

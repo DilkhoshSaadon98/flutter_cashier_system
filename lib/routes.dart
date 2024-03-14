@@ -10,6 +10,7 @@ import 'package:cashier_system/view/categories/components/add_categories_screen.
 import 'package:cashier_system/view/home/home_screen.dart';
 import 'package:cashier_system/view/import_export/import_export_screen.dart';
 import 'package:cashier_system/view/inventory/inventory_screen.dart';
+import 'package:cashier_system/view/items/components/items_add_screen.dart';
 import 'package:cashier_system/view/items/items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,8 +58,8 @@ List<GetPage<dynamic>>? routes = [
       name: AppRoute.importExportScreen,
       page: () => const ImportExportScreen()),
   GetPage(
-      transition: Transition.leftToRight,
-      curve: Curves.decelerate,
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOutBack,
       transitionDuration: const Duration(milliseconds: 500),
       name: AppRoute.itemsScreen,
       page: () => const ItemsScreen()),
@@ -94,4 +95,17 @@ List<GetPage<dynamic>>? routes = [
       transitionDuration: const Duration(milliseconds: 500),
       name: AppRoute.categoriesAddScreen,
       page: () => const AddCategoriesScreen()),
+  //!Items Routes:
+  GetPage(
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOutBack,
+      transitionDuration: const Duration(milliseconds: 500),
+      name: AppRoute.itemsUpdateScreen,
+      page: () => const EditCatagories()),
+  GetPage(
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOutBack,
+      transitionDuration: const Duration(milliseconds: 500),
+      name: AppRoute.itemsAddScreen,
+      page: () => const ItemsAddScreen()),
 ];

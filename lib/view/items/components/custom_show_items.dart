@@ -1,6 +1,7 @@
-import 'package:cashier_system/controller/items/items_controller.dart';
+import 'package:cashier_system/controller/items/items_view_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/view/items/components/custom_items_columns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,18 +17,17 @@ class CustomShowItems extends StatelessWidget {
       height: Get.height,
       child: GetBuilder<ItemsController>(builder: (controller) {
         return ListView(
+          controller: controller.scrollController,
           children: [
             DataTable(
-              dataRowColor:
-                  MaterialStatePropertyAll(secondColor.withOpacity(.08)),
               border: TableBorder(
-                  bottom: BorderSide(width: .5.w, color: thirdColor),
-                  top: BorderSide(width: .5.w, color: thirdColor),
-                  right: BorderSide(width: .5.w, color: thirdColor),
-                  left: BorderSide(width: .5.w, color: thirdColor),
-                  horizontalInside: BorderSide(width: .5.w, color: thirdColor),
-                  verticalInside: BorderSide(width: .5.w, color: thirdColor),
-                  borderRadius: BorderRadius.circular(15.r)),
+                bottom: BorderSide(width: .5.w, color: thirdColor),
+                top: BorderSide(width: .5.w, color: thirdColor),
+                right: BorderSide(width: .5.w, color: thirdColor),
+                left: BorderSide(width: .5.w, color: thirdColor),
+                horizontalInside: BorderSide(width: .5.w, color: thirdColor),
+                verticalInside: BorderSide(width: .5.w, color: thirdColor),
+              ),
               dataTextStyle: bodyStyle.copyWith(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
@@ -36,18 +36,11 @@ class CustomShowItems extends StatelessWidget {
               headingRowColor: const MaterialStatePropertyAll(fourthColor),
               headingTextStyle:
                   titleStyle.copyWith(fontSize: 14, color: secondColor),
-              dataRowHeight: 50.h,
-              columns: const [
-                DataColumn(label: Center(child: Text('Item Code'))),
-                DataColumn(label: Center(child: Text('Item Barcode'))),
-                DataColumn(label: Text('Item Name')),
-                DataColumn(label: Text('QTY')),
-                DataColumn(label: Text('Selling Price')),
-                DataColumn(label: Text('Buying Price')),
-                DataColumn(label: Text('Cost Price')),
-                DataColumn(label: Text('Type')),
-                DataColumn(label: Text('Explain')),
-              ],
+              // ignore: deprecated_member_use
+              dataRowHeight: 40.h,
+              decoration: BoxDecoration(color: secondColor.withOpacity(.08)),
+              //!Table Columns:
+              columns: customItemsColumns,
               rows: [
                 ...List<DataRow>.generate(
                   !controller.isSearch

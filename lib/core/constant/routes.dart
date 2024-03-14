@@ -13,4 +13,7 @@ class AppRoute {
   //! Categories Routes:
   static const String categoriesUpdateScreen = "/categoriesUpdateScreen";
   static const String categoriesAddScreen = "/categoriesAddScreen";
+  //! Items Routes:
+  static const String itemsUpdateScreen = "/itemsUpdateScreen";
+  static const String itemsAddScreen = "/itemsAddScreen";
   }

@@ -3,7 +3,7 @@ import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/shared/custom_divider.dart';
 import 'package:cashier_system/core/shared/custom_drop_down_search.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
-import 'package:cashier_system/core/shared/custom_buttton_items.dart';
+import 'package:cashier_system/core/shared/custom_buttton_global.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
