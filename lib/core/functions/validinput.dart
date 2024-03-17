@@ -27,6 +27,11 @@ validInput(String val, int min, int max, String type) {
       return "E-mail not valid".tr;
     }
   }
+  if (type == "number") {
+    if (!GetUtils.isNumericOnly(val)) {
+      return "Number Required".tr;
+    }
+  }
 
   if (type == "phone") {
     if (!GetUtils.isPhoneNumber(val)) {

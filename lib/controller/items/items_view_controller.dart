@@ -1,11 +1,12 @@
 import 'package:cashier_system/core/class/statusrequest.dart';
+import 'package:cashier_system/core/constant/routes.dart';
 import 'package:cashier_system/core/functions/handing_data_controller.dart';
 import 'package:cashier_system/data/model/items_model.dart';
 import 'package:cashier_system/data/source/items_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ItemsController extends GetxController {
+class ItemsViewController extends GetxController {
   ScrollController scrollController = ScrollController();
   double? scrollPosition = 0.0;
   ItemsData itemsData = ItemsData(Get.find());
@@ -16,14 +17,6 @@ class ItemsController extends GetxController {
       statusRequest = StatusRequest.none;
       isSearch = false;
     }
-    update();
-  }
-
-  void _scrollListener() {
-    scrollPosition = scrollController.position.pixels;
-    // You can use scrollPosition to determine the action you want to take
-    // For example:
-    print(scrollPosition);
     update();
   }
 
@@ -65,7 +58,6 @@ class ItemsController extends GetxController {
         listdataSearch.clear();
         List responsedata = response['data'];
         listdataSearch.addAll(responsedata.map((e) => ItemsModel.fromJson(e)));
-        print(listdataSearch[0].itemsBarcode);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -77,16 +69,15 @@ class ItemsController extends GetxController {
   //   getData();
   //   update();
   // }
-
+  goUpdateItems(ItemsModel itemsModel) {
+    Get.toNamed(AppRoute.itemsUpdateScreen, arguments: {'itemsModel': itemsModel});
+  }
   @override
   void onInit() {
     getItems();
-    scrollController.addListener(_scrollListener);
     search = TextEditingController();
     super.onInit();
   }
 
-  // goUpdate(ItemsModel itemsModel) {
-  //   Get.toNamed(AppRoute., arguments: {'itemsModel': itemsModel});
-  // }
+
 }

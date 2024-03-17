@@ -11,13 +11,12 @@ class CustomShowItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemsController());
+    Get.put(ItemsViewController());
     return Container(
       color: white,
       height: Get.height,
-      child: GetBuilder<ItemsController>(builder: (controller) {
+      child: GetBuilder<ItemsViewController>(builder: (controller) {
         return ListView(
-          controller: controller.scrollController,
           children: [
             DataTable(
               border: TableBorder(
@@ -29,13 +28,13 @@ class CustomShowItems extends StatelessWidget {
                 verticalInside: BorderSide(width: .5.w, color: thirdColor),
               ),
               dataTextStyle: bodyStyle.copyWith(
-                fontSize: 14.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.w600,
               ),
               dividerThickness: .5,
               headingRowColor: const MaterialStatePropertyAll(fourthColor),
               headingTextStyle:
-                  titleStyle.copyWith(fontSize: 14, color: secondColor),
+                  titleStyle.copyWith(fontSize: 13.sp, color: secondColor),
               // ignore: deprecated_member_use
               dataRowHeight: 40.h,
               decoration: BoxDecoration(color: secondColor.withOpacity(.08)),
@@ -49,8 +48,8 @@ class CustomShowItems extends StatelessWidget {
                   (index) {
                     return DataRow(cells: [
                       DataCell(Text(!controller.isSearch
-                          ? controller.data[index].itemsCode.toString()
-                          : controller.listdataSearch[index].itemsCode
+                          ? controller.data[index].itemsId.toString()
+                          : controller.listdataSearch[index].itemsId
                               .toString())),
                       DataCell(Text(!controller.isSearch
                           ? controller.data[index].itemsBarcode.toString()
@@ -80,6 +79,16 @@ class CustomShowItems extends StatelessWidget {
                           ? controller.data[index].itemsDesc.toString()
                           : controller.listdataSearch[index].itemsDesc
                               .toString())),
+                      DataCell(IconButton(
+                        onPressed: () {
+                          print("--------------------------");
+                          controller.goUpdateItems(controller.data[index]);
+                        },
+                        icon: const Icon(
+                          Icons.edit,
+                          color: secondColor,
+                        ),
+                      )),
                     ]);
                   },
                 ),

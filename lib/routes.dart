@@ -11,6 +11,7 @@ import 'package:cashier_system/view/home/home_screen.dart';
 import 'package:cashier_system/view/import_export/import_export_screen.dart';
 import 'package:cashier_system/view/inventory/inventory_screen.dart';
 import 'package:cashier_system/view/items/components/items_add_screen.dart';
+import 'package:cashier_system/view/items/components/items_update_screen.dart';
 import 'package:cashier_system/view/items/items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ List<GetPage<dynamic>>? routes = [
       curve: Curves.decelerate,
       transitionDuration: const Duration(milliseconds: 500),
       name: "/",
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       middlewares: [MyMiddleWare()]),
 
   //!  Home Roots :
@@ -108,4 +109,10 @@ List<GetPage<dynamic>>? routes = [
       transitionDuration: const Duration(milliseconds: 500),
       name: AppRoute.itemsAddScreen,
       page: () => const ItemsAddScreen()),
+  GetPage(
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOutBack,
+      transitionDuration: const Duration(milliseconds: 500),
+      name: AppRoute.itemsUpdateScreen,
+      page: () => const ItemsUpdateScreen()),
 ];

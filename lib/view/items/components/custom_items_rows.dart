@@ -3,7 +3,7 @@ import 'package:cashier_system/data/model/items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-ItemsController controller = Get.put(ItemsController());
+ItemsViewController controller = Get.put(ItemsViewController());
 List<DataRow> generateDataRows(List<ItemsModel> data,
     {List<ItemsModel>? searchData}) {
   return List<DataRow>.generate(
@@ -13,7 +13,7 @@ List<DataRow> generateDataRows(List<ItemsModel> data,
       return DataRow(cells: [
         DataCell(SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text(item.itemsCode.toString()))),
+            child: Text(item.itemsId.toString()))),
         DataCell(SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(item.itemsBarcode.toString()))),

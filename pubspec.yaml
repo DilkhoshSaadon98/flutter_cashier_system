@@ -10,7 +10,6 @@ dependencies:
   dartz: ^0.10.1
   flutter:
     sdk: flutter
-  flutter_screenutil: ^5.9.0
   get: ^4.6.6
   get_storage: ^2.1.1
   google_fonts: ^6.1.0
@@ -19,6 +18,8 @@ dependencies:
   shared_preferences: ^2.2.2
   # Responsive:
   responsive_builder: ^0.7.0
+  flutter_screenutil: ^5.9.0
+  window_manager: ^0.3.8
   #image / icons / svg:
   flutter_svg: ^2.0.10+1
   lottie: ^3.0.0

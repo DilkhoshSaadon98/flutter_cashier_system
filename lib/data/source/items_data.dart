@@ -13,9 +13,9 @@ class ItemsData {
   }
 
   //! Insert Items:
-  insertItemsData(Map data, File file) async {
+  insertItemsData(Map data) async {
     var response =
-        await crud.addRequestWithOneImage(AppLink.insertItems, data, file);
+        await crud.postData(AppLink.insertItems, data);
     return response.fold((l) => l, (r) => r);
   }
 
