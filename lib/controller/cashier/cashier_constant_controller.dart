@@ -1,3 +1,4 @@
+import 'package:cashier_system/controller/cashier/cashier_controller.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,8 @@ class CashierConstantController extends GetxController {
   }
 
   void cashierDelayFunction() {
-    print('cashierDelayFunction');
+    CashierController cashierController = Get.put(CashierController());
+    cashierController.delayCart();
   }
 
   void cashierDiscountFunction() {
@@ -95,27 +97,27 @@ class CashierConstantController extends GetxController {
     print('cashierCashBackCashFunction');
   }
 
-  List<void Function()> cashierFunctions = [];
+  List<Function()> cashierFunctions = [];
 
   @override
   void onInit() {
     cashierFunctions = [
-      cashierPrintFunction,
-      cashierDelayFunction,
-      cashierDiscountFunction,
-      cashierPercentFunction,
-      cashierQTYFunction,
-      cashierGiftFunction,
-      cashierDollarDinarFunction,
-      cashierCashFunction,
-      cashierDeleteItemFunction,
-      cashierNewBillFunction,
-      cashierPriceFunction,
-      cashierDeptFunction,
-      cashierImportFunction,
-      cashierCashDeptFunction,
-      cashierNameFunction,
-      cashierCashBackCashFunction,
+      () => cashierPrintFunction(),
+      () => cashierDelayFunction(),
+      () => cashierDiscountFunction(),
+      () => cashierPercentFunction(),
+      () => cashierQTYFunction(),
+      () => cashierGiftFunction(),
+      () => cashierDollarDinarFunction(),
+      () => cashierCashFunction(),
+      () => cashierDeleteItemFunction(),
+      () => cashierNewBillFunction(),
+      () => cashierPriceFunction(),
+      () => cashierDeptFunction(),
+      () => cashierImportFunction(),
+      () => cashierCashDeptFunction(),
+      () => cashierNameFunction(),
+      () => cashierCashBackCashFunction(),
     ];
     super.onInit();
   }

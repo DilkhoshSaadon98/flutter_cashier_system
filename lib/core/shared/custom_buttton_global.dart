@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 
 Widget customButtonGlobal(
     void Function()? onTap, String title, IconData iconData,
-    [Color? color, Color? textColor]) {
+    [Color? color, Color? textColor,double? width,double? height]) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      width: Get.width,
-      height: 50,
+      width:width?? Get.width,
+      height:height?? 50,
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
           color: color ?? white,

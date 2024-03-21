@@ -1,16 +1,43 @@
+import 'package:cashier_system/core/constant/app_theme.dart';
+import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-List<DataColumn> customItemsColumns = const [
-  DataColumn(label: Text('Code')),
-  DataColumn(label: Text('Barcode')),
-  DataColumn(label: Text('Name')),
-  DataColumn(
-    label: Text('QTY'),
-  ),
-  DataColumn(label: Text('Selling Price')),
-  DataColumn(label: Text('Buying Price')),
-  DataColumn(label: Text('Cost Price')),
-  DataColumn(label: Text('Type')),
-  DataColumn(label: Text('Explain')),
-  DataColumn(label: Text('Action')),
-];
+class CustomTableHeader extends StatelessWidget {
+  final List<String> data;
+  final int length;
+  final List<int> columnWidth;
+  const CustomTableHeader({
+    super.key,
+    required this.length,
+    required this.data,
+    required this.columnWidth,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: Get.width,
+      color: primaryColor,
+      child: Row(
+        children: [
+          ...List.generate(length, (index) {
+            return Container(
+              width: columnWidth[index].w,
+              height: 50,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: primaryColor,
+                  border: Border.all(width: .3, color: secondColor)),
+              child: Text(
+                data[index],
+                style: titleStyle.copyWith(color: secondColor),
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
+}

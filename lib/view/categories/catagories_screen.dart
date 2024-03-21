@@ -39,8 +39,7 @@ class CatagoriesScreen extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
                   color: primaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  child: ListView(
                     children: [
                       //! Custom Header:
                       CustomHeaderScreen(

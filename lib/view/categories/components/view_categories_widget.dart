@@ -30,47 +30,48 @@ class CustomShowCatagories extends StatelessWidget {
                             ? 3
                             : 1,
                 mainAxisSpacing: 15,
-                childAspectRatio: .8.h,
+                childAspectRatio: .7.h,
                 crossAxisSpacing: 15),
             itemCount: !controller.isSearch
                 ? controller.data.length
                 : controller.listdataSearch.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  controller.goUpdate(controller.data[index]);
-                },
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: primaryColor),
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: primaryColor,
-                            blurRadius: 1,
-                            blurStyle: BlurStyle.inner,
-                            offset: const Offset(1, 1))
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CachedNetworkImage(
-                          height: 125,
-                          width: 125,
-                          imageUrl: !controller.isSearch
-                              ? "${AppLink.imagestCategories}/${controller.data[index].categoriesImage}"
-                              : "${AppLink.imagestCategories}/${controller.listdataSearch[index].categoriesImage}"),
-                      Text(
-                        !controller.isSearch
-                            ? controller.data[index].categoriesName!
-                            : controller.listdataSearch[index].categoriesName!,
-                        style: titleStyle.copyWith(),
-                      )
-                    ],
+              return SingleChildScrollView(
+                child: GestureDetector(
+                  onTap: () {
+                    controller.goUpdate(controller.data[index]);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: primaryColor),
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: primaryColor,
+                              blurRadius: 1,
+                              blurStyle: BlurStyle.inner,
+                              offset: const Offset(1, 1))
+                        ]),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CachedNetworkImage(
+                            height: 125,
+                            width: 125,
+                            imageUrl: !controller.isSearch
+                                ? "${AppLink.imagestCategories}/${controller.data[index].categoriesImage}"
+                                : "${AppLink.imagestCategories}/${controller.listdataSearch[index].categoriesImage}"),
+                        Text(
+                          !controller.isSearch
+                              ? controller.data[index].categoriesName!
+                              : controller
+                                  .listdataSearch[index].categoriesName!,
+                          style: titleStyle.copyWith(),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

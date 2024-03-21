@@ -101,7 +101,7 @@ List<GetPage<dynamic>>? routes = [
       transition: Transition.fadeIn,
       curve: Curves.easeInOutBack,
       transitionDuration: const Duration(milliseconds: 500),
-      name: AppRoute.itemsUpdateScreen,
+      name: AppRoute.categoriesUpdateScreen,
       page: () => const EditCatagories()),
   GetPage(
       transition: Transition.fadeIn,

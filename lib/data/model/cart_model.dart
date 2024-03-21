@@ -1,4 +1,12 @@
-class ItemsModel {
+class CartModel {
+  String? itemsPrice;
+  int? countItems;
+  int? cartId;
+  int? cartItemsId;
+  int? cartOrders;
+  int? cartNumber;
+  String? cartCreateDate;
+  String? cartStatus;
   int? itemsId;
   String? itemsName;
   String? itemsBarcode;
@@ -12,8 +20,16 @@ class ItemsModel {
   int? itemsCat;
   String? itemsCreatedate;
 
-  ItemsModel(
-      {this.itemsId,
+  CartModel(
+      {this.itemsPrice,
+      this.countItems,
+      this.cartId,
+      this.cartItemsId,
+      this.cartOrders,
+      this.cartNumber,
+      this.cartCreateDate,
+      this.cartStatus,
+      this.itemsId,
       this.itemsName,
       this.itemsBarcode,
       this.itemsSellingprice,
@@ -24,9 +40,17 @@ class ItemsModel {
       this.itemsCostprice,
       this.itemsDesc,
       this.itemsCat,
-      this.itemsCreatedate,});
+      this.itemsCreatedate});
 
-  ItemsModel.fromJson(Map<String, dynamic> json) {
+  CartModel.fromJson(Map<String, dynamic> json) {
+    itemsPrice = json['items_price'];
+    countItems = json['count_items'];
+    cartId = json['cart_id'];
+    cartItemsId = json['cart_items_id'];
+    cartOrders = json['cart_orders'];
+    cartNumber = json['cart_number'];
+    cartCreateDate = json['cart_create_date'];
+    cartStatus = json['cart_status'];
     itemsId = json['items_id'];
     itemsName = json['items_name'];
     itemsBarcode = json['items_barcode'];
@@ -43,6 +67,14 @@ class ItemsModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['items_price'] = this.itemsPrice;
+    data['count_items'] = this.countItems;
+    data['cart_id'] = this.cartId;
+    data['cart_items_id'] = this.cartItemsId;
+    data['cart_orders'] = this.cartOrders;
+    data['cart_number'] = this.cartNumber;
+    data['cart_create_date'] = this.cartCreateDate;
+    data['cart_status'] = this.cartStatus;
     data['items_id'] = this.itemsId;
     data['items_name'] = this.itemsName;
     data['items_barcode'] = this.itemsBarcode;

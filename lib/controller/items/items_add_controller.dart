@@ -74,7 +74,6 @@ class AddItemsViewController extends GetxController {
   }
 
   addItems() async {
-    print('------------');
     if (formState.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update();
@@ -91,7 +90,6 @@ class AddItemsViewController extends GetxController {
         'items_cat': catID!.text,
       };
       var response = await itemsData.insertItemsData(data);
-      print(response);
       statusRequest = handlingData(response);
 
       if (StatusRequest.success == statusRequest) {

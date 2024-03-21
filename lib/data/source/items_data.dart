@@ -20,14 +20,14 @@ class ItemsData {
   }
 
   //! Update Items:
-  updateItemsData(Map data, [File? file]) async {
+  updateItemsData(Map data) async {
     var response = await crud.postData(AppLink.updateItems, data);
     return response.fold((l) => l, (r) => r);
   }
 
   //! Delete Items:
-  deleteItemsData() async {
-    var response = await crud.postData(AppLink.deleteItems, {});
+  deleteItemsData(String id) async {
+    var response = await crud.postData(AppLink.deleteItems, {"items_id":id});
     return response.fold((l) => l, (r) => r);
   }
 
