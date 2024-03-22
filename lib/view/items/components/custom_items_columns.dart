@@ -21,6 +21,7 @@ class CustomTableHeader extends StatelessWidget {
       width: Get.width,
       color: primaryColor,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ...List.generate(length, (index) {
             return Container(

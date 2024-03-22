@@ -38,11 +38,11 @@ class CashierDropDownSearch extends GetView<CashierController> {
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          label: Text(
-            title!,
-            style: titleStyle.copyWith(
-                fontWeight: FontWeight.w400, fontSize: 13, color: primaryColor),
-          ),
+          // label: Text(
+          //   title!,
+          //   style: titleStyle.copyWith(
+          //       fontWeight: FontWeight.w400, fontSize: 13, color: primaryColor),
+          // ),
           hintText: contrllerName.text == "" ? title : contrllerName.text,
           prefixIcon: Icon(
             iconData,
@@ -85,7 +85,10 @@ class CashierDropDownSearch extends GetView<CashierController> {
           SelectedListItem selectedListItem = selectedList[0];
           contrllerName.text = selectedListItem.name;
           contrllerId.text = selectedListItem.value!;
-          controller.addItemsToCart(contrllerId.text,"1");
+          controller.addItemsToCart(
+              contrllerId.text,
+              controller.myServices.systemSharedPreferences
+                  .getString('cart_number')!);
           //  showSnackBar(list.toString());
         },
       ),

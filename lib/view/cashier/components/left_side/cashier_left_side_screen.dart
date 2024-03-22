@@ -3,6 +3,9 @@ import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/functions/formating_numbers.dart';
 import 'package:cashier_system/view/cashier/components/left_side/components/cashier_drop_down.dart';
+import 'package:cashier_system/view/cashier/components/left_side/components/custom_pending_cart.dart';
+import 'package:cashier_system/view/cashier/components/left_side/components/search_box_widget.dart';
+import 'package:cashier_system/view/items/components/custom_items_columns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,59 +29,12 @@ class CashierLeftSideScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        height: 50.h,
-                        width: 50.w,
-                        margin: EdgeInsets.symmetric(horizontal: 15.h),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                        ),
-                        decoration: BoxDecoration(
-                            color: thirdColor,
-                            borderRadius: BorderRadius.circular(10.r)),
-                        child: ListView.builder(
-                            itemCount: controller.pendingCartCount,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  controller.getCartData(controller.pendedCarts[index].toString());
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: primaryColor,
-                                      border: Border.all(color: white),
-                                      borderRadius:
-                                          BorderRadius.circular(10.r)),
-                                  margin: EdgeInsets.symmetric(horizontal: 5.w),
-                                  width: 50.w,
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "${index + 1}",
-                                    style: titleStyle.copyWith(
-                                        color: white, fontSize: 30.sp),
-                                  ),
-                                ),
-                              );
-                            }),
-                      ),
-                    ),
-                    Expanded(
-                        child: Container(
-                      height: 50.h,
-                      decoration: BoxDecoration(
-                          color: thirdColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: CashierDropDownSearch(
-                        title: "Search Items",
-                        contrllerId: controller.dropDownID!,
-                        contrllerName: controller.dropDownName!,
-                        listData: controller.dropDownList,
-                        iconData: Icons.search,
-                      ),
-                    ))
+                    //? Show Pending Cart
+                    controller.pendedCarts.isNotEmpty
+                        ? const CustomPendingCarts()
+                        : Container(),
+                    //? Search Box
+                    const SearchBoxWidget()
                   ],
                 ),
               )),
@@ -88,143 +44,196 @@ class CashierLeftSideScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: white,
                     ),
-                    child: DataTable(
-                      dataRowColor: MaterialStatePropertyAll(
-                          secondColor.withOpacity(.08)),
-                      border: TableBorder(
-                          bottom: const BorderSide(color: white),
-                          top: const BorderSide(color: white),
-                          left: const BorderSide(color: white),
-                          right: const BorderSide(color: white),
-                          horizontalInside:
-                              const BorderSide(width: 1, color: white),
-                          verticalInside:
-                              const BorderSide(width: 1, color: white),
-                          borderRadius: BorderRadius.circular(5.r)),
-                      dataTextStyle: bodyStyle.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w200,
-                          color: primaryColor),
-                      dividerThickness: 1,
-                      headingRowColor:
-                          const MaterialStatePropertyAll(thirdColor),
-                      headingTextStyle: titleStyle.copyWith(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: white),
-                      // ignore: deprecated_member_use
-                      dataRowHeight: 40.h,
-                      columns: [
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Code',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Item Name',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Type',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Price',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Stack',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 500 ? 95.w : 20.w,
-                                child: Text(
-                                  'Total',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
-                        DataColumn(
-                            label: Container(
-                                alignment: Alignment.center,
-                                width: Get.width > 600 ? 95.w : 20.w,
-                                child: Text(
-                                  'Quantity',
-                                  style: bodyStyle.copyWith(color: white),
-                                ))),
+                    alignment: Alignment.topCenter,
+                    child: ListView(
+                      children: [
+                        const CustomTableHeader(
+                          length: 7,
+                          columnWidth: [
+                            75,
+                            150,
+                            150,
+                            150,
+                            150,
+                            150,
+                            150,
+                          ],
+                          data: [
+                            "Code",
+                            "Items Name",
+                            "Items Type",
+                            "Items Price",
+                            "Stack",
+                            "Total Price",
+                            "Quantity",
+                          ],
+                        ),
+                        SizedBox(
+                          height: Get.height - 50,
+                          child: ListView.builder(
+                              itemCount: controller.cartData.length,
+                              itemBuilder: (context, index) {
+                                var dataItem = controller.cartData[index];
+                                return Container(
+                                  height: 40,
+                                  alignment: Alignment.topCenter,
+                                  color: white,
+                                  child: ListView(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: secondColor.withOpacity(0.08),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 75.w,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                "${int.parse(dataItem.itemsId.toString()) + 1000}",
+                                                style: bodyStyle,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 150.w,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                dataItem.itemsName.toString(),
+                                                style: bodyStyle,
+                                              ),
+                                            ),
+                                            Container(
+                                                width: 150.w,
+                                                height: 40,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: .3,
+                                                        color: primaryColor)),
+                                                child: Text(
+                                                  textAlign: TextAlign.center,
+                                                  dataItem.itemsType.toString(),
+                                                  style: bodyStyle,
+                                                )),
+                                            Container(
+                                                width: 150.w,
+                                                height: 40,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: .3,
+                                                        color: primaryColor)),
+                                                child: Text(
+                                                    textAlign: TextAlign.center,
+                                                    formattingNumbers(int.parse(
+                                                        dataItem
+                                                            .itemsSellingprice
+                                                            .toString())))),
+                                            Container(
+                                                width: 150.w,
+                                                height: 40,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        width: .3,
+                                                        color: primaryColor)),
+                                                child: Text(
+                                                    textAlign: TextAlign.center,
+                                                    dataItem.itemsCount
+                                                        .toString())),
+                                            Container(
+                                              width: 150,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                formattingNumbers(controller
+                                                        .cartData[index]
+                                                        .countItems! *
+                                                    int.parse(controller
+                                                        .cartData[index]
+                                                        .itemsSellingprice
+                                                        .toString())),
+                                                style: bodyStyle,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 150.w,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        controller
+                                                            .cartItemDecrease(
+                                                                controller
+                                                                    .cartData[
+                                                                        index]
+                                                                    .itemsId
+                                                                    .toString());
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.remove,
+                                                        color: Colors.red,
+                                                      )),
+                                                  Text(
+                                                    controller.cartData[index]
+                                                        .countItems
+                                                        .toString(),
+                                                    style: titleStyle.copyWith(
+                                                        fontSize: 16),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        controller
+                                                            .cartItemIncrease(
+                                                                controller
+                                                                    .cartData[
+                                                                        index]
+                                                                    .itemsId
+                                                                    .toString());
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.add,
+                                                        color: Colors.green,
+                                                      )),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                        )
                       ],
-                      rows: List.generate(
-                          controller.cartData.length,
-                          (index) => DataRow(cells: [
-                                DataCell(Text(
-                                    "${int.parse(controller.cartData[index].cartId.toString()) + 1000}")),
-                                DataCell(Text(controller
-                                    .cartData[index].itemsName
-                                    .toString())),
-                                DataCell(Text(controller
-                                    .cartData[index].itemsType
-                                    .toString())),
-                                DataCell(Text(formattingNumbers(int.parse(
-                                    controller.cartData[index].itemsPrice
-                                        .toString())))),
-                                DataCell(Text(controller
-                                    .cartData[index].countItems
-                                    .toString())),
-                                DataCell(Text(formattingNumbers(int.parse(
-                                        controller.cartData[index].countItems
-                                            .toString()) *
-                                    int.parse(controller
-                                        .cartData[index].itemsPrice
-                                        .toString())))),
-                                DataCell(Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          controller.cartItemDecrease(controller
-                                              .cartData[index].itemsId
-                                              .toString());
-                                        },
-                                        icon: const Icon(
-                                          Icons.remove,
-                                          color: Colors.red,
-                                        )),
-                                    Text(
-                                      controller.cartData[index].countItems
-                                          .toString(),
-                                      style: titleStyle.copyWith(fontSize: 16),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          controller.cartItemIncrease(controller
-                                              .cartData[index].itemsId
-                                              .toString());
-                                        },
-                                        icon: const Icon(
-                                          Icons.add,
-                                          color: Colors.green,
-                                        )),
-                                  ],
-                                )),
-                              ])),
                     ),
                   )),
               Expanded(

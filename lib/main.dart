@@ -1,4 +1,5 @@
 import 'package:cashier_system/bindings/intialbindings.dart';
+import 'package:cashier_system/core/functions/custom_scroll.dart';
 import 'package:cashier_system/core/services/services.dart';
 import 'package:cashier_system/routes.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'core/localization/changelocal.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
-
 
   await initialServices();
 
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (_, child) {
           return GetMaterialApp(
+            scrollBehavior: CustomScrollBehavior(),
             debugShowCheckedModeBanner: false,
             title: "Cashier System",
             locale: controller.language,
