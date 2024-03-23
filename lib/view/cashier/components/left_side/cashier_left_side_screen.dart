@@ -167,7 +167,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 formattingNumbers(controller
                                                         .cartData[index]
-                                                        .countItems! *
+                                                        .cartItemsCount! *
                                                     int.parse(controller
                                                         .cartData[index]
                                                         .itemsSellingprice
@@ -201,12 +201,44 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                         Icons.remove,
                                                         color: Colors.red,
                                                       )),
-                                                  Text(
-                                                    controller.cartData[index]
-                                                        .countItems
-                                                        .toString(),
-                                                    style: titleStyle.copyWith(
-                                                        fontSize: 16),
+                                                  Container(
+                                                    width: 50,
+                                                    height: 40,
+                                                    alignment: Alignment.center,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: TextFormField(
+                                                      onChanged: (value) {
+                                                        controller
+                                                            .updateItemByNum(
+                                                                controller
+                                                                    .cartData[
+                                                                        index]
+                                                                    .itemsId
+                                                                    .toString(),
+                                                                value);
+                                                      },
+                                                      textAlign: TextAlign
+                                                          .center, // Align text to the center
+                                                      decoration:
+                                                          InputDecoration(
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                vertical: 10),
+                                                        hintText: controller
+                                                            .cartData[index]
+                                                            .cartItemsCount
+                                                            .toString(),
+                                                        hintStyle:
+                                                            titleStyle.copyWith(
+                                                                fontSize: 20),
+                                                        border: InputBorder
+                                                            .none, // Remove border to make circle visible
+                                                      ),
+                                                    ),
                                                   ),
                                                   IconButton(
                                                       onPressed: () {

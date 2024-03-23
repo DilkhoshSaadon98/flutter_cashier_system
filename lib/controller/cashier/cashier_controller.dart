@@ -2,6 +2,7 @@ import 'package:cashier_system/controller/cashier/cashier_constant_controller.da
 import 'package:cashier_system/core/class/statusrequest.dart';
 import 'package:cashier_system/core/functions/handing_data_controller.dart';
 import 'package:cashier_system/core/services/services.dart';
+import 'package:cashier_system/core/shared/custom_snack_bar.dart';
 import 'package:cashier_system/data/model/cart_model.dart';
 import 'package:cashier_system/data/model/items_model.dart';
 import 'package:cashier_system/data/source/cashier_data.dart';
@@ -18,6 +19,7 @@ class CashierController extends CashierConstantController {
   TextEditingController? dropDownID;
   TextEditingController? catName;
   TextEditingController? catID;
+  String? itemQuantity;
   List<SelectedListItem> dropDownList = [];
   //? Data Lists:
   List<CartModel> cartData = [];
@@ -86,6 +88,7 @@ class CashierController extends CashierConstantController {
         pendingCartCount = response['total_pending_cart']["pending_cart"];
         pendedCarts = response["pended_carts"];
         cartTotalPrice = response["total_cart_price"]["total_price"];
+        print(cartData[0].cartItemsCount);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -118,6 +121,30 @@ class CashierController extends CashierConstantController {
     update();
   }
 
+  updateItemByNum(String itemsid, String itemCount) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.addItembyNum(
+        myServices.systemSharedPreferences.getString(
+          "cart_number",
+        )!,
+        itemsid,
+        itemCount);
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        getCartData(
+            myServices.systemSharedPreferences.getString("cart_number")!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+
+    update();
+  }
+
   //! Item Decrease:
   cartItemDecrease(String itemsid) async {
     statusRequest = StatusRequest.loading;
@@ -137,7 +164,7 @@ class CashierController extends CashierConstantController {
           getCartData(myServices.systemSharedPreferences.getString(
             "cart_number",
           )!);
-        } else if (cartCount == 0) {
+        } else if (cartCount == 0 && pendedCart.isNotEmpty) {
           myServices.sharedPreferences
               .setString("cart_number", pendedCart[0].toString());
           getCartData(myServices.systemSharedPreferences.getString(
@@ -145,9 +172,7 @@ class CashierController extends CashierConstantController {
           )!);
         } else {
           myServices.sharedPreferences.setString("cart_number", "1");
-          getCartData(myServices.systemSharedPreferences.getString(
-            "cart_number",
-          )!);
+          cartData.clear();
         }
       } else {
         statusRequest = StatusRequest.failure;
@@ -161,11 +186,13 @@ class CashierController extends CashierConstantController {
   delayCart() async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await cashierData.delayCart("1");
+    var response = await cashierData
+        .delayCart(myServices.sharedPreferences.getString('cart_number')!);
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
+        customSnackBar("Success", "Order Delaied Success");
       } else {
         statusRequest = StatusRequest.failure;
       }

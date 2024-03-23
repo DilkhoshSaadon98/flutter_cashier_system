@@ -1,7 +1,12 @@
 import 'package:cashier_system/controller/cashier/cashier_controller.dart';
+import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/core/functions/validinput.dart';
+import 'package:cashier_system/core/shared/custom_buttton_global.dart';
+import 'package:cashier_system/core/shared/custom_formfield_global.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class CashierConstantController extends GetxController {
   bool isHover = false;
@@ -42,11 +47,49 @@ class CashierConstantController extends GetxController {
   }
 
   void cashierDiscountFunction() {
-    print('cashierDiscountFunction');
+    Get.defaultDialog(
+      backgroundColor: white,
+      title: "Discount Value",
+      titleStyle: titleStyle,
+      content: Column(
+        children: [
+          CustomTextFormFieldGlobal(
+              borderColor: primaryColor,
+              hinttext: 'Discount Value',
+              labeltext: '',
+              iconData: Icons.discount_outlined,
+              valid: (value) {
+                return validInput(value!, 1, 10, 'number');
+              },
+              isNumber: true),
+          customButtonGlobal(
+              () {}, 'Confirm', Icons.check, primaryColor, white, 300, 50)
+        ],
+      ),
+    );
   }
 
   void cashierPercentFunction() {
-    print('cashierPercentFunction');
+    Get.defaultDialog(
+      backgroundColor: white,
+      title: "Percent Discount Value",
+      titleStyle: titleStyle,
+      content: Column(
+        children: [
+          CustomTextFormFieldGlobal(
+              borderColor: primaryColor,
+              hinttext: 'Discount Value',
+              labeltext: '',
+              iconData: Icons.percent,
+              valid: (value) {
+                return validInput(value!, 1, 10, 'number');
+              },
+              isNumber: true),
+          customButtonGlobal(
+              () {}, 'Confirm', Icons.check, primaryColor, white, 300, 50)
+        ],
+      ),
+    );
   }
 
   void cashierQTYFunction() {

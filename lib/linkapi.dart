@@ -32,5 +32,6 @@ class AppLink {
   static const String increaseItem = "$server/cashier/item_add.php";
   static const String decreaseItem = "$server/cashier/item_delete.php";
   static const String delayCart = "$server/cashier/delay_cart.php";
+  static const String updateItemByNum = "$server/cashier/update_items_bynum.php";
  
 }

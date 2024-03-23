@@ -15,31 +15,45 @@ class CashierData {
   }
 
   getCartData(String id) async {
-    var response = await crud.postData(AppLink.getCartData, {"cart_number": id});
+    var response =
+        await crud.postData(AppLink.getCartData, {"cart_number": id});
     return response.fold((l) => l, (r) => r);
   }
 
   addDataToCart(String itemsId, String cartnumber) async {
     var response = await crud.postData(AppLink.addItemsToCart, {
-      'cart_items_id': itemsId,
+      'items_id': itemsId,
       'cart_number': cartnumber,
     });
     return response.fold((l) => l, (r) => r);
   }
-    addItem(String cartNumber, String itemsid) async {
-    var response = await crud
-        .postData(AppLink.increaseItem, {"cart_number": cartNumber, "items_id": itemsid});
+
+  addItem(String cartNumber, String itemsid) async {
+    var response = await crud.postData(
+        AppLink.increaseItem, {"cart_number": cartNumber, "items_id": itemsid});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  addItembyNum(String cartNumber, String itemsid, String itemCount) async {
+    var response = await crud.postData(AppLink.updateItemByNum, {
+      "cart_number": cartNumber,
+      "items_id": itemsid,
+      "item_count": itemCount
+    });
     return response.fold((l) => l, (r) => r);
   }
 
   deleteItem(String cartNumber, String itemsid) async {
-    var response = await crud
-        .postData(AppLink.decreaseItem, {"cart_number": cartNumber, "items_id": itemsid});
+    var response = await crud.postData(
+        AppLink.decreaseItem, {"cart_number": cartNumber, "items_id": itemsid});
     return response.fold((l) => l, (r) => r);
   }
-  delayCart(String cartNumber,) async {
-    var response = await crud
-        .postData(AppLink.delayCart, {"cart_number": cartNumber});
+
+  delayCart(
+    String cartNumber,
+  ) async {
+    var response =
+        await crud.postData(AppLink.delayCart, {"cart_number": cartNumber});
     return response.fold((l) => l, (r) => r);
   }
 }

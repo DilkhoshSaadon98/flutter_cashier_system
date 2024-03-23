@@ -5,6 +5,7 @@ class CartModel {
   int? cartItemsId;
   int? cartOrders;
   int? cartNumber;
+  int? cartItemsCount;
   String? cartCreateDate;
   String? cartStatus;
   int? itemsId;
@@ -27,6 +28,7 @@ class CartModel {
       this.cartItemsId,
       this.cartOrders,
       this.cartNumber,
+      this.cartItemsCount,
       this.cartCreateDate,
       this.cartStatus,
       this.itemsId,
@@ -49,6 +51,7 @@ class CartModel {
     cartItemsId = json['cart_items_id'];
     cartOrders = json['cart_orders'];
     cartNumber = json['cart_number'];
+    cartItemsCount = json['cart_items_count'];
     cartCreateDate = json['cart_create_date'];
     cartStatus = json['cart_status'];
     itemsId = json['items_id'];
@@ -73,6 +76,7 @@ class CartModel {
     data['cart_items_id'] = this.cartItemsId;
     data['cart_orders'] = this.cartOrders;
     data['cart_number'] = this.cartNumber;
+    data['cart_items_count'] = this.cartItemsCount;
     data['cart_create_date'] = this.cartCreateDate;
     data['cart_status'] = this.cartStatus;
     data['items_id'] = this.itemsId;
