@@ -2,7 +2,6 @@ import 'package:cashier_system/controller/cashier/cashier_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/functions/formating_numbers.dart';
-import 'package:cashier_system/view/cashier/components/left_side/components/cashier_drop_down.dart';
 import 'package:cashier_system/view/cashier/components/left_side/components/custom_pending_cart.dart';
 import 'package:cashier_system/view/cashier/components/left_side/components/search_box_widget.dart';
 import 'package:cashier_system/view/items/components/custom_items_columns.dart';
@@ -48,17 +47,19 @@ class CashierLeftSideScreen extends StatelessWidget {
                     child: ListView(
                       children: [
                         const CustomTableHeader(
-                          length: 7,
+                          length: 8,
                           columnWidth: [
+                            50,
                             75,
-                            150,
-                            150,
-                            150,
-                            150,
+                            175,
+                            100,
+                            125,
+                            100,
                             150,
                             150,
                           ],
                           data: [
+                            "Select",
                             "Code",
                             "Items Name",
                             "Items Type",
@@ -89,6 +90,27 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Container(
+                                              width: 50.w,
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Checkbox(
+                                                value: controller.selectedRows
+                                                    .contains(controller
+                                                        .cartData[index].itemsId
+                                                        .toString()),
+                                                onChanged: (value) {
+                                                  controller.checkSelectedRows(
+                                                      value!, index);
+                                                  print(
+                                                      controller.selectedRows);
+                                                },
+                                              ),
+                                            ),
+                                            Container(
                                               width: 75.w,
                                               height: 40,
                                               alignment: Alignment.center,
@@ -103,7 +125,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               ),
                                             ),
                                             Container(
-                                              width: 150.w,
+                                              width: 175.w,
                                               height: 40,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
@@ -117,7 +139,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               ),
                                             ),
                                             Container(
-                                                width: 150.w,
+                                                width: 100.w,
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
@@ -130,7 +152,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                   style: bodyStyle,
                                                 )),
                                             Container(
-                                                width: 150.w,
+                                                width: 125.w,
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
@@ -144,7 +166,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                             .itemsSellingprice
                                                             .toString())))),
                                             Container(
-                                                width: 150.w,
+                                                width: 100.w,
                                                 height: 40,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
@@ -220,6 +242,8 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                                     .toString(),
                                                                 value);
                                                       },
+                                                      cursorOpacityAnimates:
+                                                          true,
                                                       textAlign: TextAlign
                                                           .center, // Align text to the center
                                                       decoration:

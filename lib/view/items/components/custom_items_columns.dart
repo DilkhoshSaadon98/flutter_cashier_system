@@ -18,7 +18,7 @@ class CustomTableHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width,
+      width: Get.width.sw,
       color: primaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class CustomTableHeader extends StatelessWidget {
           ...List.generate(length, (index) {
             return Container(
               width: columnWidth[index].w,
-              height: 50,
+              height: 50.h,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: primaryColor,

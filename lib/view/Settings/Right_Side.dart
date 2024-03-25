@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cashier_system/controller/setting_controller.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +19,12 @@ class Right_Side extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 100.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                SizedBox(
                   height: 50.h,
                   width: 50.w,
                   child: Image.asset("assets/icons/settings.png"),
@@ -43,7 +41,7 @@ class Right_Side extends StatelessWidget {
             ),
           ),
           //buttons
-          Container(
+          SizedBox(
               height: 0.6.sh,
               child: GetBuilder<SettingController>(builder: (controller) {
                 return GridView.builder(

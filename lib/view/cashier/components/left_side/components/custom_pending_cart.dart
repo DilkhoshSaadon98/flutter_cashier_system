@@ -16,7 +16,7 @@ class CustomPendingCarts extends GetView<CashierController> {
         flex: 2,
         child: Container(
           height: 45.h,
-          width: 50.w,
+          width: 50.sw,
           margin: EdgeInsets.symmetric(horizontal: 15.h),
           padding: EdgeInsets.symmetric(
             horizontal: 5.w,
@@ -34,6 +34,7 @@ class CustomPendingCarts extends GetView<CashierController> {
                         controller.pendedCarts[index].toString());
                     controller
                         .getCartData(controller.pendedCarts[index].toString());
+                    controller.selectedRows.clear();
                   },
                   child: Container(
                     decoration: BoxDecoration(

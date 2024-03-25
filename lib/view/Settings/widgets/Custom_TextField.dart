@@ -1,7 +1,6 @@
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/request/request.dart';
 
 class Custom_TextField extends StatelessWidget {
   //TextEditingController controller;

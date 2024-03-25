@@ -19,7 +19,6 @@ class CashierController extends CashierConstantController {
   TextEditingController? dropDownID;
   TextEditingController? catName;
   TextEditingController? catID;
-  String? itemQuantity;
   List<SelectedListItem> dropDownList = [];
   //? Data Lists:
   List<CartModel> cartData = [];
@@ -27,7 +26,17 @@ class CashierController extends CashierConstantController {
   int pendingCartCount = 0;
   List pendedCarts = [];
   int cartTotalPrice = 0;
+  List<String> selectedRows = [];
   StatusRequest statusRequest = StatusRequest.none;
+  void checkSelectedRows(bool value, int index) {
+    if (value == true) {
+      selectedRows.add(cartData[index].itemsId.toString());
+    } else {
+      selectedRows.removeWhere(
+          (element) => element == cartData[index].itemsId.toString());
+    }
+    update();
+  }
 
 //! Get Items For Search;
   getItems() async {
@@ -88,7 +97,6 @@ class CashierController extends CashierConstantController {
         pendingCartCount = response['total_pending_cart']["pending_cart"];
         pendedCarts = response["pended_carts"];
         cartTotalPrice = response["total_cart_price"]["total_price"];
-        print(cartData[0].cartItemsCount);
       } else {
         statusRequest = StatusRequest.failure;
       }
