@@ -3,7 +3,10 @@ import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/shared/custom_buttton_global.dart';
 import 'package:cashier_system/view/items/components/custom_items_columns.dart';
 import 'package:cashier_system/view/items/components/custom_items_rows.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomShowItems extends StatelessWidget {
@@ -14,28 +17,16 @@ class CustomShowItems extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ItemsViewController());
     return Scaffold(
-      appBar: null, // No app bar
       body: SafeArea(
         child: Container(
+          width: Get.width.sw,
           color: white,
           child: GetBuilder<ItemsViewController>(builder: (controller) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  const CustomTableHeader(
+            return Column(
+              children: [
+                const Expanded(
+                  child: CustomTableHeader(
                     length: 10,
-                    columnWidth: [
-                      100,
-                      125,
-                      150,
-                      100,
-                      150,
-                      150,
-                      150,
-                      100,
-                      90,
-                      200
-                    ],
                     data: [
                       "NO.",
                       "Items Barcode",
@@ -49,8 +40,11 @@ class CustomShowItems extends StatelessWidget {
                       "Items Explain",
                     ],
                   ),
-                  SizedBox(
-                    height: Get.height - 50,
+                ),
+                Expanded(
+                  flex: 10,
+                  child: SizedBox(
+                    height: Get.height,
                     child: ListView.builder(
                         itemCount: !controller.isSearch
                             ? controller.data.length
@@ -69,7 +63,7 @@ class CustomShowItems extends StatelessWidget {
                               controller.setHoverState(index, false);
                             },
                             child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 100),
                               height: isHovered ? 100 : 40,
                               alignment: Alignment.topCenter,
                               child: ListView(
@@ -100,9 +94,9 @@ class CustomShowItems extends StatelessWidget {
                             ),
                           );
                         }),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             );
           }),
         ),

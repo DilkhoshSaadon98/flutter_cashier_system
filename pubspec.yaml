@@ -1,3 +1,4 @@
+
 name: cashier_system
 description: "A new Flutter project."
 publish_to: 'none'
@@ -10,28 +11,41 @@ dependencies:
   dartz: ^0.10.1
   flutter:
     sdk: flutter
+  #! Flutter Get state management
   get: ^4.6.6
+
+  #! Data Persistence
   get_storage: ^2.1.1
-  google_fonts: ^6.1.0
-  http: ^1.2.0
-  intl: ^0.19.0
   shared_preferences: ^2.2.2
-  # Responsive:
+
+  #! HTTP Requests
+  http: ^1.2.0
+
+  #! Internationalization
+  intl: ^0.19.0
+
+  #! Responsive Design
   responsive_builder: ^0.7.0
   flutter_screenutil: ^5.9.0
   window_manager: ^0.3.8
-  #image / icons / svg:
+
+  #! Image / Icons / SVG
   flutter_svg: ^2.0.10+1
   lottie: ^3.0.0
-  # Widgets:
+
+  #! Widgets
   drop_down_list: ^0.0.5
   floating_bubbles: ^2.6.2
-  file_picker: ^6.2.0
+  file_picker: ^8.0.0+1
   cached_network_image: ^3.3.1
+
+  #! Designing
+  google_fonts: ^6.1.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

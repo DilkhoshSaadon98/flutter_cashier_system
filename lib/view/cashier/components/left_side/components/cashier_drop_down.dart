@@ -35,6 +35,7 @@ class CashierDropDownSearch extends GetView<CashierController> {
         style: titleStyle.copyWith(
             color: primaryColor, fontWeight: FontWeight.w100, fontSize: 13),
         textAlign: TextAlign.start,
+        autofocus: true,
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -49,7 +50,7 @@ class CashierDropDownSearch extends GetView<CashierController> {
             color: primaryColor,
           ),
           suffixIcon: Icon(
-            Icons.arrow_drop_down_circle_outlined,
+            Icons.keyboard_arrow_down_sharp,
             color: primaryColor,
           ),
           focusedErrorBorder: const OutlineInputBorder(

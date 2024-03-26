@@ -34,19 +34,39 @@ class CashierConstantController extends GetxController {
     "Name": Icons.person_3_outlined,
     "Cash Back/Cash": Icons.money,
   };
+  // List<Color> buttonColor = [
+  //   Color(0xff279EFF),
+  //   Color(0xffFFAF45),
+  //   Color(0xff9BCF53),
+  //   Color(0xff9BCF53),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  //   Color(0xff00FF00),
+  // ];
   List<void Function(String itemid, [String? itemsCount, String? cartNumber])>
       myFunctions = [
+    // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Print Function:
       print('Function 1 called with parameter: $parameter');
     },
+    //? Done
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Delay Function
-      // CashierController cashierController = Get.put(CashierController());
-      // cashierController.delayCart();
-    },
+      CashierController cashierController = Get.put(CashierController());
+      cashierController.delayCart();
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Discount Function
+      
+      CashierController cashierController = Get.put(CashierController());
       Get.defaultDialog(
         title: "",
         titleStyle: titleStyle,
@@ -78,7 +98,7 @@ class CashierConstantController extends GetxController {
           ),
         ),
       );
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       Get.defaultDialog(
         title: "",
@@ -111,42 +131,42 @@ class CashierConstantController extends GetxController {
           ),
         ),
       );
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! QTY Function
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Gift Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Delete Item
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! New Bill Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Price Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Dept Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Export Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Cash / Dept
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Name Function
       print('Function 2 called with parameter: $parameter');
-    },
+    }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Cash BAck / Cash
       print('Function 2 called with parameter: $parameter');

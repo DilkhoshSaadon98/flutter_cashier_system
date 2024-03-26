@@ -29,7 +29,7 @@ validInput(String val, int min, int max, String type) {
   }
   if (type == "number") {
     if (!GetUtils.isNumericOnly(val)) {
-      return "Number Required".tr;
+      return "Number Required 1 , 2 , 3...".tr;
     }
   }
 

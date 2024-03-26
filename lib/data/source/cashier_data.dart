@@ -54,7 +54,6 @@ class CashierData {
   ) async {
     var response =
         await crud.postData(AppLink.delayCart, {"cart_number": cartNumber});
-    print(response);
     return response.fold((l) => l, (r) => r);
   }
 }

@@ -25,6 +25,7 @@ class CashierController extends CashierConstantController {
   List<ItemsModel> listdataSearch = [];
   int pendingCartCount = 0;
   List pendedCarts = [];
+  List cartsNumbers = [];
   int cartTotalPrice = 0;
   List<String> selectedRows = [];
   StatusRequest statusRequest = StatusRequest.none;
@@ -96,7 +97,9 @@ class CashierController extends CashierConstantController {
         cartData.addAll(responsedata.map((e) => CartModel.fromJson(e)));
         pendingCartCount = response['total_pending_cart']["pending_cart"];
         pendedCarts = response["pended_carts"];
+        cartsNumbers = response["carts_number"];
         cartTotalPrice = response["total_cart_price"]["total_price"];
+        print(cartsNumbers);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -200,7 +203,10 @@ class CashierController extends CashierConstantController {
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
-        customSnackBar("Success", "Order Delaied Success");
+        customSnackBar("Success", "Order Delaied Success", true);
+        myServices.sharedPreferences.setString('cart_number', "1");
+        await getCartData(
+            myServices.sharedPreferences.getString('cart_number')!);
       } else {
         statusRequest = StatusRequest.failure;
       }

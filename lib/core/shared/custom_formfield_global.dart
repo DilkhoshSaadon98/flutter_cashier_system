@@ -1,6 +1,9 @@
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/core/responsive/responisve_text_body.dart';
+import 'package:cashier_system/core/responsive/responsive_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
@@ -36,8 +39,7 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
+    return Expanded(
       child: TextFormField(
         textCapitalization: capitalizeText == true
             ? TextCapitalization.sentences
@@ -50,7 +52,7 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
         controller: mycontroller,
         style: titleStyle.copyWith(
             fontWeight: FontWeight.w700,
-            fontSize: 13,
+            fontSize: responsivefontSize(Get.width),
             color: borderColor ?? thirdColor),
         textAlign: TextAlign.start,
         readOnly: readOnly ?? false,
@@ -58,7 +60,8 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hinttext.tr,
           hintStyle: bodyStyle.copyWith(
-              fontSize: 12, color: borderColor ?? thirdColor),
+              fontSize: responsivefontSize(Get.width),
+              color: borderColor ?? thirdColor),
           alignLabelWithHint: true,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
@@ -66,21 +69,23 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
             labeltext.tr,
             style: titleStyle.copyWith(
                 fontWeight: FontWeight.w400,
-                fontSize: 13,
+                fontSize: responsivefontSize(Get.width),
                 color: borderColor ?? thirdColor),
           ),
           prefixIcon: Icon(
             iconData,
             color: borderColor ?? thirdColor,
+            size: responsiveIconSize(Get.width),
           ),
-          focusedErrorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: secondColor, width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          errorBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: thirdColor, width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
+          hintFadeDuration: const Duration(milliseconds: 1000),
+          focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: secondColor, width: 2),
+              borderRadius: BorderRadius.all(Radius.circular(5.r))),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: thirdColor, width: 2),
+              borderRadius: BorderRadius.all(Radius.circular(5.r))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.greenAccent, width: 2),
+              borderSide: BorderSide(color: whiteNeon, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5))),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: primaryColor, width: 2),

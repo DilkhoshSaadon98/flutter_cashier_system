@@ -48,19 +48,15 @@ class ItemsScreen extends StatelessWidget {
                         },
                         "View Items",
                         Icons.visibility,
-                        Colors.greenAccent,
+                        const Color.fromARGB(255, 31, 178, 114),
                         black,
                       ),
-                      customButtonGlobal(
-                        () {
-                          Get.offAndToNamed(AppRoute.itemsAddScreen);
-                        },
-                        "Add Items",
-                        Icons.add_box_outlined,
-                      ),
+                      customButtonGlobal(() {
+                        Get.offAndToNamed(AppRoute.itemsAddScreen);
+                      }, "Add Items", Icons.add_box_outlined, whiteNeon, black),
                       customSizedBox(),
                       CustomSearchField(
-                        borderColor: white,
+                        borderColor: whiteNeon,
                         hinttext: "Search in Items . . .",
                         iconData: Icons.search,
                         mycontroller: controller.search,

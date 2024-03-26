@@ -2,6 +2,7 @@ import 'package:cashier_system/controller/cashier/cashier_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/core/constant/imgaeasset.dart';
+import 'package:cashier_system/core/constant/routes.dart';
 import 'package:cashier_system/core/functions/formating_numbers.dart';
 import 'package:cashier_system/core/responsive/responisve_text_body.dart';
 import 'package:cashier_system/core/responsive/responsive_icons.dart';
@@ -29,14 +30,15 @@ class CashierRightSideScreen extends StatelessWidget {
               CustomHeaderScreen(
                   title: 'Cashier',
                   imagePath: AppImageAsset.cashierIcons,
-                  root: () {}),
+                  root: () {
+                    Get.offAndToNamed(AppRoute.cashierScreen);
+                  }),
               customSizedBox(),
               Expanded(
                 child: Container(
-                  height: 60.sw,
                   width: Get.width,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: const Color(0xffFF204E),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
@@ -61,27 +63,26 @@ class CashierRightSideScreen extends StatelessWidget {
               customSizedBox(),
               Expanded(
                 child: Container(
-                  height: 60.sh,
                   alignment: Alignment.center,
                   width: Get.width,
                   decoration: BoxDecoration(
-                    color: Colors.teal,
+                    color: const Color(0xff4CCD99),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SvgPicture.asset(
-                        AppImageAsset.cashierIcons,
-                        // ignore: deprecated_member_use
-                        color: white,
-                        width: responsiveIconSize(Get.width),
-                      ),
                       Text(
                         'PAY',
                         style: titleStyle.copyWith(
                             color: white,
                             fontSize: responsivefontSize(Get.width)),
+                      ),
+                      SvgPicture.asset(
+                        AppImageAsset.cashierIcons,
+                        // ignore: deprecated_member_use
+                        color: white,
+                        width: responsiveIconSize(Get.width),
                       ),
                     ],
                   ),

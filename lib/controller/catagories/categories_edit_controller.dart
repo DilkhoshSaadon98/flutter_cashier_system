@@ -4,6 +4,7 @@ import 'package:cashier_system/core/class/statusrequest.dart';
 import 'package:cashier_system/core/constant/routes.dart';
 import 'package:cashier_system/core/functions/handing_data_controller.dart';
 import 'package:cashier_system/core/functions/upload_file.dart';
+import 'package:cashier_system/core/shared/custom_snack_bar.dart';
 import 'package:cashier_system/data/model/categories_model.dart';
 import 'package:cashier_system/data/source/categories_data.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class CatagoriesEditController extends GetxController {
           Get.offAllNamed(AppRoute.catagoriesScreen);
           CatagoriesController catagoriesController = Get.find();
           catagoriesController.getCategories();
+          customSnackBar("Success", "Categories Updated Successfuly", true);
         } else {
           statusRequest = StatusRequest.failure;
         }

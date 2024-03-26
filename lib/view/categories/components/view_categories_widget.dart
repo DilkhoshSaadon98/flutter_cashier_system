@@ -2,6 +2,7 @@ import 'package:cashier_system/controller/catagories/catagories_view_controller.
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cashier_system/core/shared/custom_sized_box.dart';
 import 'package:cashier_system/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,14 +24,20 @@ class CustomShowCatagories extends StatelessWidget {
         return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: Get.width > 1200
-                    ? 8
+                    ? 7
                     : Get.width > 900
                         ? 5
                         : Get.width > 500
                             ? 3
                             : 1,
                 mainAxisSpacing: 15,
-                childAspectRatio: .7.h,
+                childAspectRatio: Get.width > 1300
+                    ? 0.7.h
+                    : Get.width > 1000
+                        ? 0.6.h
+                        : Get.width > 500
+                            ? 0.5
+                            : 0.5,
                 crossAxisSpacing: 15),
             itemCount: !controller.isSearch
                 ? controller.data.length
@@ -42,34 +49,43 @@ class CustomShowCatagories extends StatelessWidget {
                     controller.goUpdate(controller.data[index]);
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    height: 175.h,
+                    width: 175.w,
+                    alignment: Alignment.bottomCenter,
                     decoration: BoxDecoration(
-                        border: Border.all(color: primaryColor),
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: primaryColor,
-                              blurRadius: 1,
-                              blurStyle: BlurStyle.inner,
-                              offset: const Offset(1, 1))
-                        ]),
+                      border: Border.all(color: primaryColor),
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        customSizedBox(5),
                         CachedNetworkImage(
-                            height: 125,
-                            width: 125,
+                            width: 100,
+                            height: 120,
                             imageUrl: !controller.isSearch
                                 ? "${AppLink.imagestCategories}/${controller.data[index].categoriesImage}"
                                 : "${AppLink.imagestCategories}/${controller.listdataSearch[index].categoriesImage}"),
-                        Text(
-                          !controller.isSearch
-                              ? controller.data[index].categoriesName!
-                              : controller
-                                  .listdataSearch[index].categoriesName!,
-                          style: titleStyle.copyWith(),
-                        )
+                        Container(
+                          width: Get.width,
+                          height: 30,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(8),
+                                bottomRight: Radius.circular(8),
+                              )),
+                          child: Text(
+                            !controller.isSearch
+                                ? controller.data[index].categoriesName!
+                                : controller
+                                    .listdataSearch[index].categoriesName!,
+                            style:
+                                titleStyle.copyWith(color: white, fontSize: 12),
+                          ),
+                        ),
                       ],
                     ),
                   ),

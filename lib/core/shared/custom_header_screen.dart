@@ -6,7 +6,6 @@ import 'package:cashier_system/core/responsive/responsive_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class CustomHeaderScreen extends StatelessWidget {
   final String? title;
@@ -22,13 +21,11 @@ class CustomHeaderScreen extends StatelessWidget {
   final DateTime myDateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat.yMMMd().format(myDateTime);
-    String formattedTime = DateFormat.Hm().format(myDateTime);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onDoubleTap: root,
+          onTap: root,
           child: Column(
             children: [
               SvgPicture.asset(

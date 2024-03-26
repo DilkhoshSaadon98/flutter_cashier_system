@@ -29,7 +29,7 @@ class AddCategoriesScreen extends StatelessWidget {
                     child: ListView(
                       children: [
                         customAppBarTitle('Add Categories'),
-                        AddCatagories()
+                        const AddCatagories()
                       ],
                     ))),
             Expanded(
@@ -42,7 +42,9 @@ class AddCategoriesScreen extends StatelessWidget {
                     children: [
                       CustomHeaderScreen(
                         imagePath: AppImageAsset.itemsIcons,
-                        root: () {},
+                        root: () {
+                          Get.offAndToNamed(AppRoute.catagoriesScreen);
+                        },
                         title: 'Catagories',
                       ),
                       customSizedBox(25),
@@ -52,16 +54,11 @@ class AddCategoriesScreen extends StatelessWidget {
                         },
                         "View Categories",
                         Icons.visibility,
-                        Colors.greenAccent,
+                        const Color.fromARGB(255, 31, 178, 114),
                         black,
                       ),
-                      customButtonGlobal(
-                        () {
-                          Get.offAndToNamed(AppRoute.categoriesAddScreen);
-                        },
-                        "Add Categories",
-                        Icons.add_box_outlined,
-                      ),
+                      customButtonGlobal(() {}, "Add Categories",
+                          Icons.add_box_outlined, whiteNeon, black),
                     ],
                   ),
                 )),

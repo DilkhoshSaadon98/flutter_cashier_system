@@ -24,28 +24,38 @@ class CustomPendingCarts extends GetView<CashierController> {
           decoration: BoxDecoration(
               color: white, borderRadius: BorderRadius.circular(5.r)),
           child: ListView.builder(
-              itemCount: controller.pendingCartCount,
+              itemCount: controller.cartsNumbers.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+                int selectedIndex = index + 1;
+                String? storedCartNumber = controller
+                    .myServices.systemSharedPreferences
+                    .getString("cart_number");
+                int storedCartNumberInt = storedCartNumber != null
+                    ? int.tryParse(storedCartNumber) ?? 0
+                    : 0;
+
                 return GestureDetector(
                   onTap: () {
                     controller.myServices.systemSharedPreferences.setString(
                         "cart_number",
-                        controller.pendedCarts[index].toString());
+                        controller.cartsNumbers[index].toString());
                     controller
-                        .getCartData(controller.pendedCarts[index].toString());
+                        .getCartData(controller.cartsNumbers[index].toString());
                     controller.selectedRows.clear();
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: primaryColor,
+                        color: selectedIndex == storedCartNumberInt
+                            ? secondColor
+                            : primaryColor,
                         border: Border.all(color: white),
                         borderRadius: BorderRadius.circular(10.r)),
                     margin: EdgeInsets.symmetric(horizontal: 5.w),
                     width: 50.w,
                     alignment: Alignment.center,
                     child: Text(
-                      controller.pendedCarts[index].toString(),
+                      controller.cartsNumbers[index].toString(),
                       style: titleStyle.copyWith(color: white, fontSize: 30.sp),
                     ),
                   ),

@@ -49,24 +49,19 @@ class CatagoriesScreen extends StatelessWidget {
                       ),
                       customSizedBox(25),
                       customButtonGlobal(
-                        () {
-                          Get.offAndToNamed(AppRoute.catagoriesScreen);
-                        },
+                        () {},
                         "View Categories",
                         Icons.visibility,
-                        Colors.greenAccent,
+                        const Color.fromARGB(255, 31, 178, 114),
                         black,
                       ),
-                      customButtonGlobal(
-                        () {
-                          Get.offAndToNamed(AppRoute.categoriesAddScreen);
-                        },
-                        "Add Categories",
-                        Icons.add_box_outlined,
-                      ),
+                      customButtonGlobal(() {
+                        Get.offAndToNamed(AppRoute.categoriesAddScreen);
+                      }, "Add Categories", Icons.add_box_outlined, whiteNeon,
+                          black),
                       customSizedBox(),
                       CustomSearchField(
-                        borderColor: white,
+                        borderColor: whiteNeon,
                         hinttext: "Search in Catagories . . .",
                         iconData: Icons.search,
                         mycontroller: controller.search,

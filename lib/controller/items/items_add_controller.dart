@@ -22,22 +22,22 @@ class AddItemsViewController extends GetxController {
   TextEditingController? itemsCostPrice;
   TextEditingController? itemsType;
   TextEditingController? itemsBarcode;
-  TextEditingController? dropDownName;
-  TextEditingController? dropDownID;
+  TextEditingController? dropDownNameCategories;
+  TextEditingController? dropDownIDCategories;
   TextEditingController? catName;
   TextEditingController? catID;
   String? catId;
   List<SelectedListItem> dropDownList = [];
   Map<String, IconData> addItemList = {
-    "Items Name": Icons.insert_comment_sharp,
+    "Items Name": Icons.edit_document,
     "Items Explain": Icons.description_outlined,
     "Items Count": Icons.numbers_outlined,
     "Items Selling Price": Icons.attach_money_sharp,
     "Items Buying Price": Icons.attach_money_sharp,
     "Items Wholesale Price": Icons.attach_money_sharp,
     "Items Cost Price": Icons.attach_money_sharp,
-    "Items Type": Icons.type_specimen_outlined,
     "Items Brcode": Icons.barcode_reader,
+    "Items Type": Icons.type_specimen_outlined,
   };
   ItemsData itemsData = ItemsData(Get.find());
   StatusRequest? statusRequest = StatusRequest.none;
@@ -85,8 +85,8 @@ class AddItemsViewController extends GetxController {
         'items_buying_price': itemsBuyingPrice!.text,
         'items_wholesale_price': itemsWholeSalePrice!.text,
         'items_cost_price': itemsCostPrice!.text,
-        'items_type': itemsType!.text,
         'items_barcode': itemsBarcode!.text,
+        'items_type': itemsType!.text,
         'items_cat': catID!.text,
       };
       var response = await itemsData.insertItemsData(data);
@@ -118,8 +118,8 @@ class AddItemsViewController extends GetxController {
     itemsWholeSalePrice = TextEditingController();
     itemsType = TextEditingController();
     itemsBarcode = TextEditingController();
-    dropDownName = TextEditingController();
-    dropDownID = TextEditingController();
+    dropDownNameCategories = TextEditingController();
+    dropDownIDCategories = TextEditingController();
     catID = TextEditingController();
     catName = TextEditingController();
     controllerList = [
@@ -130,8 +130,8 @@ class AddItemsViewController extends GetxController {
       itemsBuyingPrice,
       itemsWholeSalePrice,
       itemsCostPrice,
+      itemsBarcode,
       itemsType,
-      itemsBarcode
     ];
     getCategories();
     super.onInit();
@@ -148,8 +148,8 @@ class AddItemsViewController extends GetxController {
     itemsCostPrice!.dispose();
     itemsType!.dispose();
     itemsBarcode!.dispose();
-    dropDownName!.dispose();
-    dropDownID!.dispose();
+    dropDownNameCategories!.dispose();
+    dropDownIDCategories!.dispose();
     catID!.dispose();
     catName!.dispose();
     super.dispose();

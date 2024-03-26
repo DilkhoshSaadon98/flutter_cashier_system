@@ -42,7 +42,9 @@ class ItemsAddScreen extends StatelessWidget {
                     children: [
                       CustomHeaderScreen(
                         imagePath: AppImageAsset.itemsIcons,
-                        root: () {},
+                        root: () {
+                          Get.offAndToNamed(AppRoute.itemsScreen);
+                        },
                         title: "Items",
                       ),
                       customSizedBox(25),
@@ -52,14 +54,11 @@ class ItemsAddScreen extends StatelessWidget {
                         },
                         "View Items",
                         Icons.visibility,
-                        Colors.greenAccent,
+                        const Color.fromARGB(255, 31, 178, 114),
                         black,
                       ),
-                      customButtonGlobal(
-                        () {},
-                        "Add Items",
-                        Icons.add_box_outlined,
-                      ),
+                      customButtonGlobal(() {}, "Add Items",
+                          Icons.add_box_outlined, whiteNeon, black),
                     ],
                   ),
                 )),

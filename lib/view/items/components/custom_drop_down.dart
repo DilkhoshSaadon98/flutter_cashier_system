@@ -1,8 +1,11 @@
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
+import 'package:cashier_system/core/responsive/responisve_text_body.dart';
+import 'package:cashier_system/core/responsive/responsive_icons.dart';
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomDropDownSearch extends StatelessWidget {
   final String? title;
@@ -31,20 +34,18 @@ class CustomDropDownSearch extends StatelessWidget {
           showDropDownList(context);
         },
         style: titleStyle.copyWith(
-            color: primaryColor, fontWeight: FontWeight.w100, fontSize: 13),
+            color: primaryColor,
+            fontWeight: FontWeight.w100,
+            fontSize: responsivefontSize(Get.width)),
         textAlign: TextAlign.start,
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          label: Text(
-            title!,
-            style: titleStyle.copyWith(
-                fontWeight: FontWeight.w400, fontSize: 13, color: primaryColor),
-          ),
           hintText: contrllerName.text == "" ? title : contrllerName.text,
           prefixIcon: Icon(
             iconData,
             color: primaryColor,
+            size: responsiveIconSize(Get.width),
           ),
           suffixIcon: Icon(
             Icons.arrow_drop_down_circle_outlined,

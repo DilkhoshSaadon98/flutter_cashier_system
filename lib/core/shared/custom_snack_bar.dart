@@ -9,21 +9,21 @@ customSnackBar(String title, String content, [bool? longDelay]) {
     '',
     titleText: Text(
       title,
-      style: titleStyle.copyWith(color: white),
+      style: titleStyle.copyWith(color: primaryColor),
     ),
     messageText: Text(
       content,
-      style: bodyStyle.copyWith(color: white),
+      style: bodyStyle.copyWith(color: primaryColor),
     ),
-    icon: const Icon(
+    icon: Icon(
       Icons.check,
-      color: white,
+      color: primaryColor,
     ),
-    backgroundColor: fourthColor.withOpacity(.6),
-    colorText: white,
+    backgroundColor: whiteNeon.withOpacity(.6),
+    colorText: primaryColor,
     snackStyle: SnackStyle.FLOATING,
     borderWidth: 1,
-    borderColor: white,
+    borderColor: primaryColor,
     duration: longDelay == true
         ? const Duration(milliseconds: 3000)
         : const Duration(milliseconds: 1000),

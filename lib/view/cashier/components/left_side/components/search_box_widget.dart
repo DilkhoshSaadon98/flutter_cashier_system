@@ -10,23 +10,19 @@ class SearchBoxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CashierController>(
-      builder: (controller) {
-        return Expanded(
-                            child: Container(
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: CashierDropDownSearch(
-                            title: "Search Items",
-                            contrllerId: controller.dropDownID!,
-                            contrllerName: controller.dropDownName!,
-                            listData: controller.dropDownList,
-                            iconData: Icons.search,
-                          ),
-                        ));
-      }
-    );
+    return GetBuilder<CashierController>(builder: (controller) {
+      return Expanded(
+          child: Container(
+        decoration: BoxDecoration(
+            color: white, borderRadius: BorderRadius.circular(10)),
+        child: CashierDropDownSearch(
+          title: "Search Items",
+          contrllerId: controller.dropDownID!,
+          contrllerName: controller.dropDownName!,
+          listData: controller.dropDownList,
+          iconData: Icons.search,
+        ),
+      ));
+    });
   }
 }

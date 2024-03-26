@@ -6,7 +6,6 @@ import 'package:cashier_system/view/cashier/components/left_side/components/cust
 import 'package:cashier_system/view/cashier/components/left_side/components/search_box_widget.dart';
 import 'package:cashier_system/view/items/components/custom_items_columns.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CashierLeftSideScreen extends StatelessWidget {
@@ -24,108 +23,117 @@ class CashierLeftSideScreen extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
+                  flex: 2,
                   child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    //? Show Pending Cart
-                    controller.pendedCarts.isNotEmpty
-                        ? const CustomPendingCarts()
-                        : Container(),
-                    //? Search Box
-                    const SearchBoxWidget()
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        //? Show Pending Cart
+                        controller.pendedCarts.isNotEmpty
+                            ? const CustomPendingCarts()
+                            : Container(),
+                        //? Search Box
+                        const SearchBoxWidget()
+                      ],
+                    ),
+                  )),
+              const Expanded(
+                flex: 1,
+                child: CustomTableHeader(
+                  length: 8,
+                  data: [
+                    "Select",
+                    "Item Code",
+                    "Items Name",
+                    "Items Type",
+                    "Items Price",
+                    "Stack",
+                    "Total Price",
+                    "Quantity",
                   ],
                 ),
-              )),
+              ),
               Expanded(
-                  flex: 6,
+                  flex: 10,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: white,
                     ),
                     alignment: Alignment.topCenter,
-                    child: ListView(
-                      children: [
-                        const CustomTableHeader(
-                          length: 8,
-                          columnWidth: [
-                            50,
-                            75,
-                            175,
-                            100,
-                            125,
-                            100,
-                            150,
-                            150,
-                          ],
-                          data: [
-                            "Select",
-                            "Code",
-                            "Items Name",
-                            "Items Type",
-                            "Items Price",
-                            "Stack",
-                            "Total Price",
-                            "Quantity",
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height - 50,
-                          child: ListView.builder(
-                              itemCount: controller.cartData.length,
-                              itemBuilder: (context, index) {
-                                var dataItem = controller.cartData[index];
-                                return Container(
-                                  height: 40,
-                                  alignment: Alignment.topCenter,
-                                  color: white,
-                                  child: ListView(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: secondColor.withOpacity(0.08),
+                    child: SizedBox(
+                      height: Get.height - 50,
+                      child: ListView.builder(
+                          itemCount: controller.cartData.length,
+                          itemBuilder: (context, index) {
+                            var dataItem = controller.cartData[index];
+                            return Container(
+                              height: 40,
+                              alignment: Alignment.topCenter,
+                              color: white,
+                              child: ListView(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: secondColor.withOpacity(0.08),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            height: 40,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: .3,
+                                                    color: primaryColor)),
+                                            child: Checkbox(
+                                              value: controller.selectedRows
+                                                  .contains(controller
+                                                      .cartData[index].itemsId
+                                                      .toString()),
+                                              onChanged: (value) {
+                                                controller.checkSelectedRows(
+                                                    value!, index);
+                                                print(controller.selectedRows);
+                                              },
+                                            ),
+                                          ),
                                         ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              width: 50.w,
-                                              height: 40,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: .3,
-                                                      color: primaryColor)),
-                                              child: Checkbox(
-                                                value: controller.selectedRows
-                                                    .contains(controller
-                                                        .cartData[index].itemsId
-                                                        .toString()),
-                                                onChanged: (value) {
-                                                  controller.checkSelectedRows(
-                                                      value!, index);
-                                                  print(
-                                                      controller.selectedRows);
-                                                },
-                                              ),
+                                        Expanded(
+                                          child: Container(
+                                            height: 40,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: .3,
+                                                    color: primaryColor)),
+                                            child: Text(
+                                              textAlign: TextAlign.center,
+                                              "${int.parse(dataItem.itemsId.toString()) + 1000}",
+                                              style: titleStyle,
                                             ),
-                                            Container(
-                                              width: 75.w,
-                                              height: 40,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: .3,
-                                                      color: primaryColor)),
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                "${int.parse(dataItem.itemsId.toString()) + 1000}",
-                                                style: bodyStyle,
-                                              ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            height: 40,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: .3,
+                                                    color: primaryColor)),
+                                            child: Text(
+                                              textAlign: TextAlign.center,
+                                              dataItem.itemsName.toString(),
+                                              style: titleStyle,
                                             ),
-                                            Container(
-                                              width: 175.w,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
                                               height: 40,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
@@ -134,51 +142,28 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                       color: primaryColor)),
                                               child: Text(
                                                 textAlign: TextAlign.center,
-                                                dataItem.itemsName.toString(),
-                                                style: bodyStyle,
-                                              ),
-                                            ),
-                                            Container(
-                                                width: 100.w,
-                                                height: 40,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: .3,
-                                                        color: primaryColor)),
-                                                child: Text(
-                                                  textAlign: TextAlign.center,
-                                                  dataItem.itemsType.toString(),
-                                                  style: bodyStyle,
-                                                )),
-                                            Container(
-                                                width: 125.w,
-                                                height: 40,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: .3,
-                                                        color: primaryColor)),
-                                                child: Text(
-                                                    textAlign: TextAlign.center,
-                                                    formattingNumbers(int.parse(
-                                                        dataItem
-                                                            .itemsSellingprice
-                                                            .toString())))),
-                                            Container(
-                                                width: 100.w,
-                                                height: 40,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: .3,
-                                                        color: primaryColor)),
-                                                child: Text(
-                                                    textAlign: TextAlign.center,
-                                                    dataItem.itemsCount
+                                                dataItem.itemsType.toString(),
+                                                style: titleStyle,
+                                              )),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                formattingNumbers(int.parse(
+                                                    dataItem.itemsSellingprice
                                                         .toString())),
-                                            Container(
-                                              width: 150,
+                                                style: titleStyle,
+                                              )),
+                                        ),
+                                        Expanded(
+                                          child: Container(
                                               height: 40,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
@@ -187,29 +172,46 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                       color: primaryColor)),
                                               child: Text(
                                                 textAlign: TextAlign.center,
-                                                formattingNumbers(controller
-                                                        .cartData[index]
-                                                        .cartItemsCount! *
-                                                    int.parse(controller
-                                                        .cartData[index]
-                                                        .itemsSellingprice
-                                                        .toString())),
-                                                style: bodyStyle,
-                                              ),
+                                                dataItem.itemsCount.toString(),
+                                                style: titleStyle,
+                                              )),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            height: 40,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: .3,
+                                                    color: primaryColor)),
+                                            child: Text(
+                                              textAlign: TextAlign.center,
+                                              formattingNumbers(controller
+                                                      .cartData[index]
+                                                      .cartItemsCount! *
+                                                  int.parse(controller
+                                                      .cartData[index]
+                                                      .itemsSellingprice
+                                                      .toString())),
+                                              style: titleStyle,
                                             ),
-                                            Container(
-                                              width: 150.w,
-                                              height: 40,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: .3,
-                                                      color: primaryColor)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  IconButton(
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            height: 40,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: .3,
+                                                    color: primaryColor)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: IconButton(
                                                       onPressed: () {
                                                         controller
                                                             .cartItemDecrease(
@@ -223,9 +225,9 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                         Icons.remove,
                                                         color: Colors.red,
                                                       )),
-                                                  Container(
-                                                    width: 50,
-                                                    height: 40,
+                                                ),
+                                                Expanded(
+                                                  child: Container(
                                                     alignment: Alignment.center,
                                                     decoration:
                                                         const BoxDecoration(
@@ -264,7 +266,9 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ),
-                                                  IconButton(
+                                                ),
+                                                Expanded(
+                                                  child: IconButton(
                                                       onPressed: () {
                                                         controller
                                                             .cartItemIncrease(
@@ -278,25 +282,46 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                         Icons.add,
                                                         color: Colors.green,
                                                       )),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                );
-                              }),
-                        )
-                      ],
+                                ],
+                              ),
+                            );
+                          }),
                     ),
                   )),
               Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: primaryColor,
-                  )),
+                flex: 2,
+                child: Container(),
+                // child: Container(
+                //   color: primaryColor,
+                //   child: GridView.builder(
+                //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //           crossAxisCount: 3,
+                //           mainAxisSpacing: 10,
+                //           childAspectRatio: .8,
+                //           crossAxisSpacing: 10),
+                //       itemCount: 6,
+                //       itemBuilder: (context, index) {
+                //         return Expanded(
+                //           child: Container(
+                //             color: thirdColor,
+                //             child: Row(
+                //               children: [
+
+                //               ],
+                //             ),
+                //           ),
+                //         );
+                //       }),
+                // )
+              ),
             ],
           ),
         ),
