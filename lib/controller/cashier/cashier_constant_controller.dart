@@ -5,6 +5,7 @@ import 'package:cashier_system/core/functions/validinput.dart';
 import 'package:cashier_system/core/shared/custom_buttton_global.dart';
 import 'package:cashier_system/core/shared/custom_formfield_global.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
+import 'package:cashier_system/core/shared/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,10 +63,11 @@ class CashierConstantController extends GetxController {
       //! Delay Function
       CashierController cashierController = Get.put(CashierController());
       cashierController.delayCart();
-    }, // TODO:
+    },
+    //?Done
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Discount Function
-      
+      TextEditingController? discountValueController = TextEditingController();
       CashierController cashierController = Get.put(CashierController());
       Get.defaultDialog(
         title: "",
@@ -84,6 +86,7 @@ class CashierConstantController extends GetxController {
               ),
               customSizedBox(25),
               CustomTextFormFieldGlobal(
+                  mycontroller: discountValueController,
                   borderColor: primaryColor,
                   hinttext: 'Discount Value',
                   labeltext: '',
@@ -92,14 +95,26 @@ class CashierConstantController extends GetxController {
                     return validInput(value!, 1, 10, 'number');
                   },
                   isNumber: true),
-              customButtonGlobal(
-                  () {}, 'Confirm', Icons.check, primaryColor, white, 400, 50)
+              customButtonGlobal(() {
+                if (cashierController.selectedRows.isNotEmpty) {
+                  cashierController.dicountingItems(
+                      cashierController.selectedRows,
+                      discountValueController.text);
+                  Get.back();
+                  cashierController.selectedRows.clear();
+                } else {
+                  customSnackBar("Error", "Please Select One Row");
+                }
+              }, 'Confirm', Icons.check, primaryColor, white, 400, 50)
             ],
           ),
         ),
       );
-    }, // TODO:
+    },
+    //? Done
     (String parameter, [String? itemsCount, String? cartNumber]) {
+      TextEditingController? discountValueController = TextEditingController();
+      CashierController cashierController = Get.put(CashierController());
       Get.defaultDialog(
         title: "",
         titleStyle: titleStyle,
@@ -112,32 +127,91 @@ class CashierConstantController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Discount Value",
+                "Percent Discount Value",
                 style: titleStyle.copyWith(fontSize: 20),
               ),
               customSizedBox(25),
               CustomTextFormFieldGlobal(
+                  mycontroller: discountValueController,
                   borderColor: primaryColor,
                   hinttext: 'Discount Percent Value',
                   labeltext: '',
-                  iconData: Icons.discount_outlined,
+                  iconData: Icons.percent,
                   valid: (value) {
                     return validInput(value!, 1, 10, 'number');
                   },
                   isNumber: true),
-              customButtonGlobal(
-                  () {}, 'Confirm', Icons.check, primaryColor, white, 400, 50)
+              customButtonGlobal(() {
+                cashierController
+                    .percentDiscounting(discountValueController.text);
+                Get.back();
+                cashierController.selectedRows.clear();
+              }, 'Confirm', Icons.check, primaryColor, white, 400, 50)
+            ],
+          ),
+        ),
+      );
+    },
+    //? Done
+    (String parameter, [String? itemsCount, String? cartNumber]) {
+      //! QTY Function
+      TextEditingController? discountValueController = TextEditingController();
+      CashierController cashierController = Get.put(CashierController());
+      Get.defaultDialog(
+        title: "",
+        titleStyle: titleStyle,
+        content: Container(
+          height: 200,
+          width: 400,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Percent Discount Value",
+                style: titleStyle.copyWith(fontSize: 20),
+              ),
+              customSizedBox(25),
+              CustomTextFormFieldGlobal(
+                  mycontroller: discountValueController,
+                  borderColor: primaryColor,
+                  hinttext: 'Discount Percent Value',
+                  labeltext: '',
+                  iconData: Icons.percent,
+                  valid: (value) {
+                    return validInput(value!, 1, 10, 'number');
+                  },
+                  isNumber: true),
+              customButtonGlobal(() {
+                if (cashierController.selectedRows.isNotEmpty) {
+                  cashierController.updateItemQuantity(
+                      cashierController.selectedRows[0],
+                      discountValueController.text);
+                  Get.back();
+                  cashierController.selectedRows.clear();
+                } else {
+                  customSnackBar("Error", "Please Select One Row");
+                }
+              }, 'Confirm', Icons.check, primaryColor, white, 400, 50)
             ],
           ),
         ),
       );
     }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
-      //! QTY Function
-    }, // TODO:
-    (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Gift Function
-      print('Function 2 called with parameter: $parameter');
+
+      CashierController cashierController = Get.put(CashierController());
+      if (cashierController.selectedRows.isNotEmpty) {
+        cashierController.cartItemGift(
+          cashierController.selectedRows[0],
+        );
+        customSnackBar("Success", "Item Maked Gift Success");
+        cashierController.selectedRows.clear();
+      } else {
+        customSnackBar("Error", "Please Select One Row");
+      }
     }, // TODO:
     (String parameter, [String? itemsCount, String? cartNumber]) {
       //! Delete Item
@@ -173,4 +247,9 @@ class CashierConstantController extends GetxController {
     },
   ];
 //!! Side Button Functions:
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 }

@@ -7,13 +7,13 @@ FROM
 WHERE
     cart_status = 'pending';
 
-// View Cart:--------------------------------------------
-    CREATE OR REPLACE VIEW cartview AS SELECT
+// View Cart:--------------------------------------------    
+CREATE OR REPLACE VIEW cartview AS SELECT
     SUM(
-        CAST(
-            tbl_items.items_sellingprice  AS INT
-        )
-    ) AS items_price,
+       CAST(
+           tbl_items.items_sellingprice * (tbl_cart.cart_discount  / 100) as INT
+       )
+    ) AS items_price_discount,
     COUNT(tbl_cart.cart_items_id) AS count_items,
     tbl_cart.*,
     tbl_items.*

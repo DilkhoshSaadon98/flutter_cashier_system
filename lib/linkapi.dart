@@ -31,7 +31,12 @@ class AppLink {
   static const String addItemsToCart = "$server/cashier/add_items.php";
   static const String increaseItem = "$server/cashier/item_add.php";
   static const String decreaseItem = "$server/cashier/item_delete.php";
+  //? Cashier Button Link
   static const String delayCart = "$server/cashier/delay_cart.php";
   static const String updateItemByNum = "$server/cashier/update_items_bynum.php";
+  static const String discountingItems = "$server/cashier/cashier_buttons/discounting_items.php";
+  static const String percentDiscounting = "$server/cashier/cashier_buttons/percent_discounting.php";
+  static const String updateItemQuantity = "$server/cashier/cashier_buttons/update_item_quantity.php";
+  static const String cartItemGift = "$server/cashier/cashier_buttons/cart_item_gift.php";
  
 }

@@ -1,8 +1,6 @@
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class CustomTableHeader extends StatelessWidget {
   final List<String> data;
@@ -21,7 +19,7 @@ class CustomTableHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ...List.generate(length, (index) {
-            int flexValue = (index == 2 || index == length - 1) ? 2 : 1;
+            int flexValue = (index == 2 || index == length - 1) ? 3 : 2;
             return Expanded(
               flex: flexValue,
               child: Container(

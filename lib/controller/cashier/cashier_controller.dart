@@ -15,6 +15,7 @@ class CashierController extends CashierConstantController {
   CashierData cashierData = CashierData(Get.find());
 
   final MyServices myServices = Get.find();
+  TextEditingController? itemsQuantity;
   TextEditingController? dropDownName;
   TextEditingController? dropDownID;
   TextEditingController? catName;
@@ -99,7 +100,6 @@ class CashierController extends CashierConstantController {
         pendedCarts = response["pended_carts"];
         cartsNumbers = response["carts_number"];
         cartTotalPrice = response["total_cart_price"]["total_price"];
-        print(cartsNumbers);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -203,7 +203,10 @@ class CashierController extends CashierConstantController {
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
-        customSnackBar("Success", "Order Delaied Success", true);
+        customSnackBar(
+          "Success",
+          "Order Delaied Success",
+        );
         myServices.sharedPreferences.setString('cart_number', "1");
         await getCartData(
             myServices.sharedPreferences.getString('cart_number')!);
@@ -212,6 +215,100 @@ class CashierController extends CashierConstantController {
       }
       // End
     }
+    update();
+  }
+
+  //! Discounting Items
+  dicountingItems(List<String> itemsId, String discountValue) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.discountingItems(
+        myServices.sharedPreferences.getString('cart_number')!,
+        itemsId,
+        discountValue);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        customSnackBar(
+          "Success",
+          "Items Discounted Succsss",
+        );
+        await getCartData(
+            myServices.sharedPreferences.getString('cart_number')!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+      // End
+    }
+    update();
+  }
+
+  //! Percent Discount:
+  percentDiscounting(String discountValue) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.percentDiscounting(
+        myServices.sharedPreferences.getString('cart_number')!, discountValue);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        customSnackBar(
+          "Success",
+          "Items Discounted Succsss",
+        );
+        await getCartData(
+            myServices.sharedPreferences.getString('cart_number')!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+      // End
+    }
+    update();
+  }
+
+  updateItemQuantity(String itemsid, String itemCount) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.addItembyNum(
+        myServices.systemSharedPreferences.getString(
+          "cart_number",
+        )!,
+        itemsid,
+        itemCount);
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        getCartData(
+            myServices.systemSharedPreferences.getString("cart_number")!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+
+    update();
+  }
+
+  cartItemGift(String itemsid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.cartItemGift(
+        myServices.systemSharedPreferences.getString("cart_number")!, itemsid);
+    statusRequest = handlingData(response);
+    print(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        getCartData(
+            myServices.systemSharedPreferences.getString("cart_number")!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+
     update();
   }
 
@@ -224,6 +321,7 @@ class CashierController extends CashierConstantController {
     )!);
     dropDownName = TextEditingController();
     dropDownID = TextEditingController();
+    itemsQuantity = TextEditingController();
     super.onInit();
   }
 }

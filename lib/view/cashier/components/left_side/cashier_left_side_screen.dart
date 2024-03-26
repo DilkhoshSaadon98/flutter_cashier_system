@@ -40,13 +40,14 @@ class CashierLeftSideScreen extends StatelessWidget {
               const Expanded(
                 flex: 1,
                 child: CustomTableHeader(
-                  length: 8,
+                  length: 9,
                   data: [
                     "Select",
                     "Item Code",
                     "Items Name",
                     "Items Type",
                     "Items Price",
+                    "Discount Price ",
                     "Stack",
                     "Total Price",
                     "Quantity",
@@ -81,6 +82,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
                                             height: 40,
                                             alignment: Alignment.center,
@@ -102,6 +104,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
                                             height: 40,
                                             alignment: Alignment.center,
@@ -117,7 +120,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Expanded(
-                                          flex: 2,
+                                          flex: 3,
                                           child: Container(
                                             height: 40,
                                             alignment: Alignment.center,
@@ -133,6 +136,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
                                               height: 40,
                                               alignment: Alignment.center,
@@ -147,6 +151,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               )),
                                         ),
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
                                               height: 40,
                                               alignment: Alignment.center,
@@ -163,6 +168,27 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               )),
                                         ),
                                         Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                              height: 40,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: .3,
+                                                      color: primaryColor)),
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                formattingNumbers(
+                                                    (dataItem.cartItemDiscount! /
+                                                            100) *
+                                                        int.parse(dataItem
+                                                            .itemsSellingprice
+                                                            .toString())),
+                                                style: titleStyle,
+                                              )),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
                                           child: Container(
                                               height: 40,
                                               alignment: Alignment.center,
@@ -177,6 +203,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                               )),
                                         ),
                                         Expanded(
+                                          flex: 2,
                                           child: Container(
                                             height: 40,
                                             alignment: Alignment.center,
@@ -198,7 +225,7 @@ class CashierLeftSideScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Expanded(
-                                          flex: 2,
+                                          flex: 3,
                                           child: Container(
                                             height: 40,
                                             alignment: Alignment.center,
@@ -234,7 +261,8 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: TextFormField(
-                                                      onChanged: (value) {
+                                                      onFieldSubmitted:
+                                                          (value) {
                                                         controller
                                                             .updateItemByNum(
                                                                 controller
@@ -248,6 +276,9 @@ class CashierLeftSideScreen extends StatelessWidget {
                                                           true,
                                                       textAlign: TextAlign
                                                           .center, // Align text to the center
+                                                      style:
+                                                          titleStyle.copyWith(
+                                                              fontSize: 20),
                                                       decoration:
                                                           InputDecoration(
                                                         contentPadding:

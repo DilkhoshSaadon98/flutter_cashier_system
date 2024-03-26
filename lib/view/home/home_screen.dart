@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.white,
+                    backgroundColor: white,
                     radius: 35.w,
                     child: SvgPicture.asset(
                       controller.homeIcons[index],
