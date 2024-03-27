@@ -38,5 +38,6 @@ class AppLink {
   static const String percentDiscounting = "$server/cashier/cashier_buttons/percent_discounting.php";
   static const String updateItemQuantity = "$server/cashier/cashier_buttons/update_item_quantity.php";
   static const String cartItemGift = "$server/cashier/cashier_buttons/cart_item_gift.php";
+  static const String deleteCartItem = "$server/cashier/cashier_buttons/delete_cart_items.php";
  
 }

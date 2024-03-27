@@ -19,7 +19,11 @@ class CustomTableHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ...List.generate(length, (index) {
-            int flexValue = (index == 2 || index == length - 1) ? 3 : 2;
+            int flexValue = (index == 2)
+                ? 3
+                : (index == 0 || index == 1 || index == length - 3)
+                    ? 1
+                    : 2;
             return Expanded(
               flex: flexValue,
               child: Container(

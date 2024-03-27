@@ -86,9 +86,14 @@ class CashierData {
   }
 
   cartItemGift(String cartNumber, String itemsid) async {
-    print(cartNumber);
-    print(itemsid);
     var response = await crud.postData(AppLink.cartItemGift, {
+      "cart_number": cartNumber,
+      "items_id": itemsid,
+    });
+    return response.fold((l) => l, (r) => r);
+  }
+  deleteCartItem(String cartNumber, String itemsid) async {
+    var response = await crud.postData(AppLink.deleteCartItem, {
       "cart_number": cartNumber,
       "items_id": itemsid,
     });

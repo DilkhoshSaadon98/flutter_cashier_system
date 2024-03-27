@@ -72,7 +72,7 @@ class CustomDropDownSearch extends GetView<ItemsViewController> {
               borderRadius: BorderRadius.all(Radius.circular(5))),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: color ?? white, width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
         ),
       ),
     );

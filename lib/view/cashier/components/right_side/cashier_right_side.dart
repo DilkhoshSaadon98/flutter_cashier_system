@@ -62,30 +62,65 @@ class CashierRightSideScreen extends StatelessWidget {
               ),
               customSizedBox(),
               Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff4CCD99),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        'PAY',
-                        style: titleStyle.copyWith(
-                            color: white,
-                            fontSize: responsivefontSize(Get.width)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff4CCD99),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              'New Bill',
+                              style: titleStyle.copyWith(
+                                  color: white,
+                                  fontSize: responsivefontSize(Get.width)),
+                            ),
+                            const Icon(
+                              Icons.recycling_rounded,
+                              color: white,
+                            )
+                          ],
+                        ),
                       ),
-                      SvgPicture.asset(
-                        AppImageAsset.cashierIcons,
-                        // ignore: deprecated_member_use
-                        color: white,
-                        width: responsiveIconSize(Get.width),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 194, 205, 76),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              'PAY',
+                              style: titleStyle.copyWith(
+                                  color: white,
+                                  fontSize: responsivefontSize(Get.width)),
+                            ),
+                            SvgPicture.asset(
+                              AppImageAsset.cashierIcons,
+                              // ignore: deprecated_member_use
+                              color: white,
+                              width: responsiveIconSize(Get.width),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               customSizedBox(),
@@ -99,7 +134,7 @@ class CashierRightSideScreen extends StatelessWidget {
                       childAspectRatio: Get.width > 600 ? 4.h : 3.5.h,
                       crossAxisSpacing: 10,
                     ),
-                    itemCount: controller.buttonMap.length,
+                    itemCount: controller.buttonsDetails.length,
                     itemBuilder: (context, index) {
                       bool isHovered = controller.hoverStates[index];
 
@@ -112,16 +147,21 @@ class CashierRightSideScreen extends StatelessWidget {
                         },
                         child: GestureDetector(
                           onTap: () {
-                            controller.myFunctions[index](
-                                controller.buttonMap.keys.elementAt(index));
+                            controller.buttonsDetails[index]['function'](
+                                controller.buttonsDetails[index]['title']);
                           },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 100),
                             height: 50.h,
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             decoration: BoxDecoration(
-                              color: !isHovered ? thirdColor : secondColor,
-                              border: Border.all(color: secondColor, width: .5),
+                              color: !isHovered
+                                  ? controller.buttonsDetails[index]['color']
+                                  : secondColor,
+                              border: Border.all(
+                                  color: controller.buttonsDetails[index]
+                                      ['color'],
+                                  width: .5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Row(
@@ -129,7 +169,7 @@ class CashierRightSideScreen extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: Text(
-                                    controller.buttonMap.keys.elementAt(index),
+                                    controller.buttonsDetails[index]['title'],
                                     style: bodyStyle.copyWith(
                                       color: white,
                                       fontSize: responsivefontSize(Get.width),
@@ -137,7 +177,7 @@ class CashierRightSideScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Icon(
-                                  controller.buttonMap.values.elementAt(index),
+                                  controller.buttonsDetails[index]['icon'],
                                   color: white,
                                   size: responsiveIconSize(Get.width),
                                 )

@@ -11,7 +11,7 @@ TextStyle get titleStyle {
       ? GoogleFonts.kanit(
           textStyle: TextStyle(
           fontSize: 16.sp,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w900,
           color: primaryColor,
         ))
       : myServices.sharedPreferences.getString('lang') == 'ar'

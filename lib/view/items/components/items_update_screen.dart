@@ -6,7 +6,6 @@ import 'package:cashier_system/core/shared/custom_appbar_title.dart';
 import 'package:cashier_system/core/shared/custom_buttton_global.dart';
 import 'package:cashier_system/core/shared/custom_header_screen.dart';
 import 'package:cashier_system/core/shared/custom_sized_box.dart';
-import 'package:cashier_system/view/items/components/custom_add_items.dart';
 import 'package:cashier_system/view/items/components/custom_update_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

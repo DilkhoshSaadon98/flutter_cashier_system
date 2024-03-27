@@ -1,3 +1,4 @@
+import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,7 @@ class Custom_TextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 0.45.sw,
       height: 0.1.sh,
       child: Row(
@@ -34,10 +35,8 @@ class Custom_TextField extends StatelessWidget {
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: title,
-                labelStyle: TextStyle(
-                  color: white,
-                ),
-                suffixIcon: isPassword ? Icon(Icons.visibility) : null,
+                labelStyle: titleStyle,
+                suffixIcon: isPassword ? const Icon(Icons.visibility) : null,
               ),
             ),
           ),

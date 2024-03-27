@@ -77,7 +77,7 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
             color: borderColor ?? thirdColor,
             size: responsiveIconSize(Get.width),
           ),
-          hintFadeDuration: const Duration(milliseconds: 1000),
+          hintFadeDuration: const Duration(milliseconds: 500),
           focusedErrorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: secondColor, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5.r))),
@@ -85,7 +85,7 @@ class CustomTextFormFieldGlobal extends StatelessWidget {
               borderSide: const BorderSide(color: thirdColor, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5.r))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: whiteNeon, width: 2),
+              borderSide: BorderSide(color: secondColor, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5))),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: primaryColor, width: 2),

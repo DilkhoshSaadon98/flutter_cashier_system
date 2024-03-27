@@ -114,7 +114,7 @@ class UpdateScreen extends StatelessWidget {
               ],
             ),
           ),
-          Right_Side(),
+          RightSideWidget(),
         ],
       ),
     );

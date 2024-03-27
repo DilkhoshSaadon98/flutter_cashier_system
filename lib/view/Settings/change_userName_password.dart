@@ -1,10 +1,8 @@
 import 'package:cashier_system/core/constant/color.dart';
 import 'package:cashier_system/view/Settings/Right_Side.dart';
 import 'package:cashier_system/view/Settings/widgets/Custom_TextField.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ChangeUsernamePassword extends StatelessWidget {
   const ChangeUsernamePassword({super.key});
@@ -120,7 +118,7 @@ class ChangeUsernamePassword extends StatelessWidget {
             ),
           ),
           // قسم الازار
-          Right_Side(),
+          RightSideWidget(),
         ],
       ),
     );

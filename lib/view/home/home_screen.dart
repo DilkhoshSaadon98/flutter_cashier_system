@@ -1,7 +1,6 @@
 import 'package:cashier_system/controller/home/home_controller.dart';
 import 'package:cashier_system/core/constant/app_theme.dart';
 import 'package:cashier_system/core/constant/color.dart';
-import 'package:cashier_system/view/home/components/animated_positioned.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

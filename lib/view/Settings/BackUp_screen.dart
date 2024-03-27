@@ -96,7 +96,7 @@ class BackupScreen extends StatelessWidget {
               ],
             ),
           ),
-          Right_Side(),
+          RightSideWidget(),
         ],
       ),
     );

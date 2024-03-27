@@ -1,7 +1,6 @@
 import 'package:cashier_system/controller/cashier/cashier_constant_controller.dart';
 import 'package:cashier_system/core/class/statusrequest.dart';
 import 'package:cashier_system/core/functions/handing_data_controller.dart';
-import 'package:cashier_system/core/services/services.dart';
 import 'package:cashier_system/core/shared/custom_snack_bar.dart';
 import 'package:cashier_system/data/model/cart_model.dart';
 import 'package:cashier_system/data/model/items_model.dart';
@@ -12,24 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CashierController extends CashierConstantController {
-  CashierData cashierData = CashierData(Get.find());
+  void setHoverState(int index, bool isHovered) {
+    hoverStates[index] = isHovered;
+    update();
+  }
 
-  final MyServices myServices = Get.find();
-  TextEditingController? itemsQuantity;
-  TextEditingController? dropDownName;
-  TextEditingController? dropDownID;
-  TextEditingController? catName;
-  TextEditingController? catID;
-  List<SelectedListItem> dropDownList = [];
-  //? Data Lists:
-  List<CartModel> cartData = [];
-  List<ItemsModel> listdataSearch = [];
-  int pendingCartCount = 0;
-  List pendedCarts = [];
-  List cartsNumbers = [];
-  int cartTotalPrice = 0;
-  List<String> selectedRows = [];
-  StatusRequest statusRequest = StatusRequest.none;
   void checkSelectedRows(bool value, int index) {
     if (value == true) {
       selectedRows.add(cartData[index].itemsId.toString());
@@ -298,7 +284,25 @@ class CashierController extends CashierConstantController {
     var response = await cashierData.cartItemGift(
         myServices.systemSharedPreferences.getString("cart_number")!, itemsid);
     statusRequest = handlingData(response);
-    print(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        getCartData(
+            myServices.systemSharedPreferences.getString("cart_number")!);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+
+    update();
+  }
+
+  deleteCartItem(String itemsid) async {
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await cashierData.deleteCartItem(
+        myServices.systemSharedPreferences.getString("cart_number")!, itemsid);
+    statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend
       if (response['status'] == "success") {
